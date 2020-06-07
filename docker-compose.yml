@@ -1,0 +1,15 @@
+version: "3"
+volumes:
+  node_modules:
+  build:
+services:
+  app:
+    build: .
+    env_file: .env
+    command: mix phx.server
+    volumes:
+      - .:/app
+      - node_modules:/app/assets/node_modules
+      - build:/app/_build
+    ports:
+      - "4000:4000"
