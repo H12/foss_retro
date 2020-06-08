@@ -12,9 +12,12 @@ defmodule EasyRetro.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: EasyRetro.PubSub},
       # Start the Endpoint (http/https)
-      EasyRetroWeb.Endpoint
+      EasyRetroWeb.Endpoint,
       # Start a worker by calling: EasyRetro.Worker.start_link(arg)
       # {EasyRetro.Worker, arg}
+ 
+      # Custom applications for handling creation/usage/removal of retro boards
+      {EasyRetro.Boundary.BoardManager, name: EasyRetro.Boundary.BoardManager}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
