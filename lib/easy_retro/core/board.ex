@@ -1,11 +1,33 @@
 defmodule EasyRetro.Core.Board do
-  defstruct [:key, :title, cards: %{}, categories: []]
+  alias EasyRetro.Core.Card
+
+  defstruct [:key, :title, card_count: 0, cards: %{}, categories: %{}]
 
   def new(title) do
     %__MODULE__{
       key: generate_key(),
       title: title
     }
+  end
+
+  def add_card(board, content, category_key) do
+    new_card = Card.new(board.card_count, content)
+
+    old_cards = Map.get(board.cards, category_key)
+    new_cards = Map.put(board.cards, category_key, [new_card | old_cards])
+
+    board
+    |> Map.put(:cards, new_cards)
+    |> Map.put(:card_count, board.card_count + 1)
+  end
+
+  def add_category(board, name) do
+    old_cards = board.cards
+    old_categories = board.categories
+
+    board
+    |> Map.put(:categories, Map.put(old_categories, map_size(old_categories), name))
+    |> Map.put(:cards, Map.put(old_cards, map_size(old_cards), []))
   end
 
   defp generate_key(key_length \\ 5) do

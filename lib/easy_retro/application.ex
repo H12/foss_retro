@@ -19,7 +19,7 @@ defmodule EasyRetro.Application do
       # Custom applications for handling creation/usage/removal of retro boards
       {EasyRetro.Boundary.BoardManager, [name: EasyRetro.Boundary.BoardManager]},
       {Registry, [name: EasyRetro.Registry.BoardSession, keys: :unique]},
-      {DynamicSupervisor, [name: Board.Supervisor.BoardSession, strategy: :one_for_one]}
+      {DynamicSupervisor, [name: EasyRetro.Supervisor.BoardSession, strategy: :one_for_one]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

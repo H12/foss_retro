@@ -26,7 +26,7 @@ defmodule EasyRetro.Boundary.BoardSession do
     {
       :via,
       Registry,
-      {EasyRetro.Registry.GameSession, registry_name}
+      {EasyRetro.Registry.BoardSession, registry_name}
     }
   end
 
@@ -35,6 +35,26 @@ defmodule EasyRetro.Boundary.BoardSession do
       EasyRetro.Supervisor.BoardSession,
       {__MODULE__, board}
     )
+  end
+
+  @impl GenServer
+  def handle_call({:add_card, content, category_key}, _from, board) do
+    new_board = Board.add_card(board, content, category_key) 
+    {:reply, new_board, new_board}
+  end
+
+  @impl GenServer
+  def handle_call({:add_category, name}, _from, board) do
+    new_board = Board.add_category(board, name) 
+    {:reply, new_board, new_board}
+  end
+
+  def add_card(registry_name, content, category_key) do
+    GenServer.call(via(registry_name), {:add_card, content, category_key})
+  end
+
+  def add_category(registry_name, name) do
+    GenServer.call(via(registry_name), {:add_category, name})
   end
 
   def active_sessions() do

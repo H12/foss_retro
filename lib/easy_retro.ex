@@ -22,6 +22,14 @@ defmodule EasyRetro do
     end
   end
 
+  def add_card(registry_name, card_content, category_key) do
+    BoardSession.add_card(registry_name, card_content, category_key)
+  end
+
+  def add_category(registry_name, category_name) do
+    BoardSession.add_category(registry_name, category_name)
+  end
+
   defp registry_name_for_board(board) do
     registry_name = {board.title, board.key}
 
