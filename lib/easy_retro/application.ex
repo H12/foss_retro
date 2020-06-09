@@ -15,9 +15,11 @@ defmodule EasyRetro.Application do
       EasyRetroWeb.Endpoint,
       # Start a worker by calling: EasyRetro.Worker.start_link(arg)
       # {EasyRetro.Worker, arg}
- 
+
       # Custom applications for handling creation/usage/removal of retro boards
-      {EasyRetro.Boundary.BoardManager, name: EasyRetro.Boundary.BoardManager}
+      {EasyRetro.Boundary.BoardManager, [name: EasyRetro.Boundary.BoardManager]},
+      {Registry, [name: EasyRetro.Registry.BoardSession, keys: :unique]},
+      {DynamicSupervisor, [name: Board.Supervisor.BoardSession, strategy: :one_for_one]}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
