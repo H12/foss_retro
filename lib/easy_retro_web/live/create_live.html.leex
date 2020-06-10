@@ -1,16 +1,15 @@
 <section class="phx-hero">
-  <h1><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
-  <p>Peace-of-mind from prototype to production</p>
+  <h1><%= gettext "Welcome to %{name}!", name: "EasyRetro" %></h1>
+  <p>Easy Retrospectives for Agile Development</p>
 
-  <form phx-change="suggest" phx-submit="search">
-    <input type="text" name="q" value="<%= @query %>" placeholder="Live dependency search" list="results" autocomplete="off"/>
-    <datalist id="results">
-      <%= for {app, _vsn} <- @results do %>
-        <option value="<%= app %>"><%= app %></option>
-      <% end %>
-    </datalist>
-    <button type="submit" phx-disable-with="Searching...">Go to Hexdocs</button>
+  <form phx-submit="create">
+    <input type="text" name="title" value="<%= @title %>" placeholder="Retro name"/>
+    <button type="submit" value="Create">Create Retro!</button>
   </form>
+
+  <%= if @key do %>
+    <p>Here's your retro key: <%= @key %></p>
+  <% end %>
 </section>
 
 <section class="row">

@@ -17,7 +17,7 @@ defmodule EasyRetroWeb.Router do
   scope "/", EasyRetroWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
+    live "/", CreateLive, :index
   end
 
   # Other scopes may use custom stacks.
