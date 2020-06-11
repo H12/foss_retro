@@ -5,8 +5,19 @@ defmodule EasyRetro do
   alias EasyRetro.Boundary.{BoardManager, BoardSession}
   alias EasyRetro.Core.Board
 
+  @topic inspect(__MODULE__)
+
+  def subscribe() do
+    Phoenix.PubSub.subscribe(EasyRetro.PubSub, @topic)
+  end
+
   def build_board(title) do
     BoardManager.build_board(title)
+    |> notify_subscribers([:board, :built])
+  end
+
+  def list_boards do
+    BoardManager.list_boards()
   end
 
   def lookup_board_by_key(key) do
@@ -29,6 +40,17 @@ defmodule EasyRetro do
   def add_category(registry_name, category_name) do
     BoardSession.add_category(registry_name, category_name)
   end
+
+  defp notify_subscribers(%Board{key: key}, event) do
+    notify_subscribers({:ok, key}, event)
+  end
+
+  defp notify_subscribers({:ok, key}, event) do
+    Phoenix.PubSub.broadcast(EasyRetro.PubSub, @topic, {__MODULE__, event, key})
+    {:ok, key}
+  end
+
+  defp notify_subscribers({:error, reason}, _event), do: {:error, reason}
 
   defp registry_name_for_board(board) do
     registry_name = {board.title, board.key}

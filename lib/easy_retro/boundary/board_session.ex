@@ -39,13 +39,13 @@ defmodule EasyRetro.Boundary.BoardSession do
 
   @impl GenServer
   def handle_call({:add_card, content, category_key}, _from, board) do
-    new_board = Board.add_card(board, content, category_key) 
+    new_board = Board.add_card(board, content, category_key)
     {:reply, new_board, new_board}
   end
 
   @impl GenServer
   def handle_call({:add_category, name}, _from, board) do
-    new_board = Board.add_category(board, name) 
+    new_board = Board.add_category(board, name)
     {:reply, new_board, new_board}
   end
 

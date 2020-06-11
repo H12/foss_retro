@@ -1,0 +1,15 @@
+<section class="phx-hero">
+  <h1>Wow, look at all those retro boards!</h1>
+  <table>
+    <tr>
+      <th>ID Key</th>
+      <th>Board Title</th>
+    </tr>
+    <%= for {key, board} <- @boards do %>
+      <tr>
+        <td><%= key %></td>
+        <td><%= board.title %></td>
+      </tr>
+    <% end %>
+  </table>
+</section>
