@@ -13,6 +13,7 @@ defmodule EasyRetro do
 
   def build_board(title) do
     BoardManager.build_board(title)
+    |> start_retro
     |> notify_subscribers([:board, :built])
   end
 
@@ -24,7 +25,7 @@ defmodule EasyRetro do
     BoardManager.lookup_board_by_key(key)
   end
 
-  def start_retro(key) do
+  def start_retro(%Board{key: key}) do
     with %Board{} = board <- EasyRetro.lookup_board_by_key(key),
          {:ok, _} <- BoardSession.start_retro(board) do
       registry_name_for_board(board)
@@ -51,6 +52,8 @@ defmodule EasyRetro do
   end
 
   defp notify_subscribers({:error, reason}, _event), do: {:error, reason}
+
+  defp notify_subscribers({_title, key}, event), do: notify_subscribers({:ok, key}, event)
 
   defp registry_name_for_board(board) do
     registry_name = {board.title, board.key}

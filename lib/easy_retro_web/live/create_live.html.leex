@@ -3,12 +3,15 @@
   <p>Easy Retrospectives for Agile Development</p>
 
   <form phx-submit="create">
-    <input type="text" name="title" value="<%= @title %>" placeholder="Retro name"/>
-    <button type="submit">Create Retro</button>
+    <%= if @key do %>
+      <h3>Thanks! Share this key with your teammates:</h3>
+      <h2>
+        <%= live_patch @key, to: Routes.live_path(@socket, EasyRetroWeb.BoardLive, key: @key)%>
+      </h2>
+    <% else %>
+      <input type="text" name="title" value="<%= @title %>" placeholder="Retro name"/>
+      <button type="submit">Create Retro</button>
+    <% end %>
   </form>
 
-  <%= if @key do %>
-    <h3>Thanks! Share this key with your teammates:</h3>
-    <h1><%= @key %></h1>
-  <% end %>
 </section>
