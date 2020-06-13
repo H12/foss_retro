@@ -1,0 +1,11 @@
+<%= if @board do %>
+  <h1><%= @board.title %></h1>
+<% else %>
+  <section class="phx-hero">
+    <h1>Let's retro!</h1>
+    <form phx-submit="join">
+      <input type="text" name="key" value="<%= @key %>" placeholder="Enter a retro board key">
+      <button type="submit" value="Join">Join Retro!</button>
+    </form>
+  </section>
+<% end %>
