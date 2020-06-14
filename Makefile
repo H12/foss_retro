@@ -11,9 +11,8 @@ start:
 stop:
 	docker-compose down
 
-tests:
-	MIX_ENV=test mix coveralls
+console:
+	docker-compose run --rm app iex -S mix
 
-coverage:
-	MIX_ENV=test mix coveralls.html &&\
-	open cover/excoveralls.html
+tests:
+	docker-compose run --rm -e "MIX_ENV=test" app mix test
