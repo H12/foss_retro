@@ -18,26 +18,27 @@ defmodule EasyRetro do
   end
 
   def list_boards do
-    BoardSession.active_sessions()
+    BoardManager.list_boards()
   end
 
   def lookup_board_by_key(key) do
-    key
-    |> BoardManager.lookup_board_by_key()
-    |> registry_name_for_board()
-    |> BoardSession.view_board()
+    BoardManager.lookup_board_by_key(key)
   end
 
   def add_card(board, category_key, card_content) do
     board
     |> registry_name_for_board()
     |> BoardSession.add_card(category_key, card_content)
+    |> BoardManager.update_board()
+    |> notify_subscribers([:board, :updated])
   end
 
   def add_category(board, category_name) do
     board
     |> registry_name_for_board()
     |> BoardSession.add_category(category_name)
+    |> BoardManager.update_board()
+    |> notify_subscribers([:board, :updated])
   end
 
   defp start_retro(board) do
@@ -49,11 +50,14 @@ defmodule EasyRetro do
   end
 
   defp notify_subscribers({:ok, key}, event) do
-    Phoenix.PubSub.broadcast(EasyRetro.PubSub, @topic, {__MODULE__, event, key})
-    {:ok, key}
+    board = lookup_board_by_key(key)
+    Phoenix.PubSub.broadcast(EasyRetro.PubSub, @topic, {__MODULE__, event, board})
+    board
   end
 
   defp notify_subscribers({:error, reason}, _event), do: {:error, reason}
+
+  defp notify_subscribers(%EasyRetro.Core.Board{key: key}, event), do: notify_subscribers({:ok, key}, event)
 
   defp notify_subscribers({_title, key}, event), do: notify_subscribers({:ok, key}, event)
 

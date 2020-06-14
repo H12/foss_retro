@@ -8,11 +8,7 @@ defmodule EasyRetroWeb.ListLive do
   end
 
   @impl true
-  def handle_info({EasyRetro, [:board, :built], _code}, socket) do
-    {:noreply, fetch_boards(socket)}
-  end
-
-  defp fetch_boards(socket) do
-    assign(socket, boards: EasyRetro.list_boards())
+  def handle_info({EasyRetro, [:board, :built], _board}, socket) do
+    {:noreply, assign(socket, boards: EasyRetro.list_boards())}
   end
 end

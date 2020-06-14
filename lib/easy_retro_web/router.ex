@@ -19,6 +19,7 @@ defmodule EasyRetroWeb.Router do
 
     live "/", CreateLive, :index
     live "/board", BoardLive
+    live "/board/:key", BoardLive
     live "/boards", ListLive
   end
 

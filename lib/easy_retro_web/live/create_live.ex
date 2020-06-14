@@ -8,7 +8,7 @@ defmodule EasyRetroWeb.CreateLive do
 
   @impl true
   def handle_event("create", %{"title" => title}, socket) do
-    {:ok, key} = EasyRetro.build_board(title)
+    %EasyRetro.Core.Board{key: key} = EasyRetro.build_board(title)
 
     {:noreply, assign(socket, key: key, title: title)}
   end

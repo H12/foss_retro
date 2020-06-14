@@ -5,10 +5,10 @@
       <th>ID Key</th>
       <th>Board Title</th>
     </tr>
-    <%= for {title, key} <- @boards do %>
+    <%= for {key, board} <- @boards do %>
       <tr>
         <td><%= key %></td>
-        <td><%= title %></td>
+        <td><%= board.title %></td>
       </tr>
     <% end %>
   </table>

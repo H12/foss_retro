@@ -33,6 +33,11 @@ defmodule EasyRetro.Boundary.BoardManager do
   end
 
   @impl GenServer
+  def handle_call({:update_board, new_board}, _from, boards) do
+    {:reply, new_board, Map.replace!(boards, new_board.key, new_board)}
+  end
+
+  @impl GenServer
   def handle_call({:remove_board, key}, _from, boards) do
     {:reply, :ok, Map.delete(boards, key)}
   end
@@ -47,6 +52,10 @@ defmodule EasyRetro.Boundary.BoardManager do
 
   def lookup_board_by_key(manager \\ __MODULE__, key) do
     GenServer.call(manager, {:lookup_board_by_key, key})
+  end
+
+  def update_board(manager \\ __MODULE__, new_board) do
+    GenServer.call(manager, {:update_board, new_board})
   end
 
   def remove_board(manager \\ __MODULE__, key) do
