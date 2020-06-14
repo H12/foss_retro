@@ -10,7 +10,8 @@ defmodule EasyRetro.Core.Board do
     }
   end
 
-  def add_card(board, content, category_key) do
+  @spec add_card(map(), integer(), binary()) :: map()
+  def add_card(board, category_key, content) do
     new_card = Card.new(board.card_count, content)
 
     old_cards = Map.get(board.cards, category_key)

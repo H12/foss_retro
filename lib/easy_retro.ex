@@ -3,7 +3,6 @@ defmodule EasyRetro do
   The main API for interacting with EasyRetro's OTP business logic
   """
   alias EasyRetro.Boundary.{BoardManager, BoardSession}
-  alias EasyRetro.Core.Board
 
   @topic inspect(__MODULE__)
 
@@ -12,38 +11,41 @@ defmodule EasyRetro do
   end
 
   def build_board(title) do
-    BoardManager.build_board(title)
+    title
+    |> BoardManager.build_board()
     |> start_retro
     |> notify_subscribers([:board, :built])
   end
 
   def list_boards do
-    BoardManager.list_boards()
+    BoardSession.active_sessions()
   end
 
   def lookup_board_by_key(key) do
-    BoardManager.lookup_board_by_key(key)
+    key
+    |> BoardManager.lookup_board_by_key()
+    |> registry_name_for_board()
+    |> BoardSession.view_board()
   end
 
-  def start_retro(%Board{key: key}) do
-    with %Board{} = board <- EasyRetro.lookup_board_by_key(key),
-         {:ok, _} <- BoardSession.start_retro(board) do
+  def add_card(board, category_key, card_content) do
+    board
+    |> registry_name_for_board()
+    |> BoardSession.add_card(category_key, card_content)
+  end
+
+  def add_category(board, category_name) do
+    board
+    |> registry_name_for_board()
+    |> BoardSession.add_category(category_name)
+  end
+
+  defp start_retro(board) do
+    with {:ok, _} <- BoardSession.start_retro(board) do
       registry_name_for_board(board)
     else
       error -> error
     end
-  end
-
-  def add_card(registry_name, card_content, category_key) do
-    BoardSession.add_card(registry_name, card_content, category_key)
-  end
-
-  def add_category(registry_name, category_name) do
-    BoardSession.add_category(registry_name, category_name)
-  end
-
-  defp notify_subscribers(%Board{key: key}, event) do
-    notify_subscribers({:ok, key}, event)
   end
 
   defp notify_subscribers({:ok, key}, event) do

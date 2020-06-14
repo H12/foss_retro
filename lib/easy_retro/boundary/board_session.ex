@@ -38,8 +38,8 @@ defmodule EasyRetro.Boundary.BoardSession do
   end
 
   @impl GenServer
-  def handle_call({:add_card, content, category_key}, _from, board) do
-    new_board = Board.add_card(board, content, category_key)
+  def handle_call({:add_card, category_key, content}, _from, board) do
+    new_board = Board.add_card(board, category_key, content)
     {:reply, new_board, new_board}
   end
 
@@ -49,12 +49,21 @@ defmodule EasyRetro.Boundary.BoardSession do
     {:reply, new_board, new_board}
   end
 
-  def add_card(registry_name, content, category_key) do
-    GenServer.call(via(registry_name), {:add_card, content, category_key})
+  @impl GenServer
+  def handle_call({:view_board}, _from, board) do 
+    {:reply, board, board}
+  end
+
+  def add_card(registry_name, category_key, content) do
+    GenServer.call(via(registry_name), {:add_card, category_key, content})
   end
 
   def add_category(registry_name, name) do
     GenServer.call(via(registry_name), {:add_category, name})
+  end
+
+  def view_board(registry_name) do
+    GenServer.call(via(registry_name), {:view_board})
   end
 
   def active_sessions() do
@@ -68,7 +77,7 @@ defmodule EasyRetro.Boundary.BoardSession do
   defp child_pid?(_child), do: false
 
   defp active_sessions({:undefined, pid, :worker, [__MODULE__]}) do
-    Board.Registry.BoardSession
+    EasyRetro.Registry.BoardSession
     |> Registry.keys(pid)
   end
 end
