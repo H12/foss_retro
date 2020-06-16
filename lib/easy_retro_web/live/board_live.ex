@@ -24,7 +24,7 @@ defmodule EasyRetroWeb.BoardLive do
   end
 
   def handle_info({EasyRetro, [:board, :updated], board}, socket) do
-    {:noreply, assign(socket, board: board)}
+    {:noreply, maybe_assign_board(socket, board)}
   end
 
   def handle_event("join", %{"key" => key}, socket) do
@@ -42,6 +42,14 @@ defmodule EasyRetroWeb.BoardLive do
     IO.puts("CARD ADDED BOARD")
     IO.inspect new_board
     {:noreply, assign(socket, board: new_board)}
+  end
+
+  defp maybe_assign_board(socket, board) do
+    if board.key == socket.assigns.board.key do
+      assign(socket, board: board)
+    else
+      socket
+    end
   end
 end
 
