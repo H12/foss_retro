@@ -19,6 +19,10 @@ defmodule EasyRetroWeb.BoardLive do
     {:noreply, assign(socket, board: nil)}
   end
 
+  def handle_info({EasyRetro, [:board, :built], _board}, socket) do
+    {:noreply, socket}
+  end
+
   def handle_info({EasyRetro, [:board, :updated], board}, socket) do
     {:noreply, assign(socket, board: board)}
   end
