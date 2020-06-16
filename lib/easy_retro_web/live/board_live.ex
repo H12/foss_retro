@@ -7,6 +7,7 @@ defmodule EasyRetroWeb.BoardLive do
   end
 
   def mount(_params, _session, socket) do
+    EasyRetro.subscribe()
     {:ok, assign(socket, board: nil)}
   end
 
