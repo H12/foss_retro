@@ -1,21 +1,23 @@
 <%= if @board do %>
   <h1><%= @board.title %></h1>
-  <div class="container">
+  <div class="board">
     <%= for { category_key, category_name } <- @board.categories do %>
       <div class="category">
-        <h2><%= category_name %></h2>
+        <div class="name"><%= category_name %></div>
         <form class="add-card" phx-submit="add_card">
           <input type="text" name="content" phx-value-category="<%= category_key %>" placeholder="Add a card">
           <input type="hidden" name="category" value="<%= category_key %>">
         </form>
         <%= for %{ content: content }<- @board.cards[category_key] do %>
-          <div class="card"><%= content %></div>
+          <div class="card"><span class="content"><%= content %></span></div>
         <% end %>
       </div>
     <% end %>
-    <form class="add-category" phx-submit="add_category">
-      <input type="text" name="name" placeholder="Add a category">
-    </form>
+    <div class="category">
+      <form class="add-category" phx-submit="add_category">
+        <input type="text" name="name" placeholder="Add a category">
+      </form>
+    </div>
   </div>
 <% else %>
   <section class="phx-hero">

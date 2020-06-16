@@ -91,7 +91,48 @@
 }
 
 /* Text styling */
-.key-link{
+.key-link {
   font-size: 42px;
   font-family: Courier;
+}
+
+/* Retro Board Styling */
+.board {
+  display: flex;
+  overflow: auto;
+
+  .category {
+    padding: 16px;
+    min-width: 226px;
+
+    display: flex;
+    flex-direction: column;
+
+    > .name {
+      width: 100%;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    .card {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 16px 0;
+      padding: 32px;
+      min-height: 120px;
+      width: 100%;
+      border-radius: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.25),
+      0 2px 4px rgba(0,0,0,0.20),
+      0 4px 6px rgba(0,0,0,0.15);
+
+
+      .content {
+        display: flex;
+        text-align: center;
+        font-size: 12px;
+      }
+    }
+  }
 }
