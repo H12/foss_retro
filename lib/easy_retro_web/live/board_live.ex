@@ -40,8 +40,6 @@ defmodule EasyRetroWeb.BoardLive do
   def handle_event("add_card", %{"category" => category_id, "content" => content}, socket) do
     board = socket.assigns.board
     new_board = EasyRetro.add_card(board, String.to_integer(category_id), content)
-    IO.puts("CARD ADDED BOARD")
-    IO.inspect new_board
     {:noreply, assign(socket, board: new_board)}
   end
 
