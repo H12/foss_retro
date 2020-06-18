@@ -96,6 +96,16 @@
   font-family: Courier;
 }
 
+/* Landing Page Styling */
+.main-container {
+  display: flex;
+
+  .button {
+    flex: 1;
+    margin: 6%;
+  }
+}
+
 /* Retro Board Styling */
 .board {
   display: flex;

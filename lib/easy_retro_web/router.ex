@@ -17,7 +17,8 @@ defmodule EasyRetroWeb.Router do
   scope "/", EasyRetroWeb do
     pipe_through :browser
 
-    live "/", CreateLive, :index
+    live "/", MainLive, :index
+    live "/create", CreateLive
     live "/board", BoardLive
     live "/board/:key", BoardLive
     live "/boards", ListLive
