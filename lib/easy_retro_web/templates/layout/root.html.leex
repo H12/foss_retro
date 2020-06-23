@@ -10,24 +10,6 @@
     <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </head>
   <body>
-    <header>
-      <section class="container">
-        <nav role="navigation">
-          <ul>
-            <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
-              <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
-            <% end %>
-            <li><%= link "List Boards", to: "/boards" %></li>
-          </ul>
-        </nav>
-        <a class="logo" href="/">
-          <img src="<%= Routes.static_path(@conn, "/images/logo.svg") %>" alt="logo">
-        </a>
-        <%= if assigns[:board] do %>
-          <h1 class="title"><%= @board.title %></h1>
-        <% end %>
-      </section>
-    </header>
     <%= @inner_content %>
   </body>
 </html>
