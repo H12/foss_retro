@@ -17,14 +17,15 @@
             <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
               <li><%= link "LiveDashboard", to: Routes.live_dashboard_path(@conn, :home) %></li>
             <% end %>
-            <li><%= link "Create a Board", to: "/" %></li>
-            <li><%= link "View a Board", to: "/board" %></li>
             <li><%= link "List Boards", to: "/boards" %></li>
           </ul>
         </nav>
-        <a href="https://phoenixframework.org/" class="phx-logo">
-          <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
+        <a class="logo" href="/">
+          <img src="<%= Routes.static_path(@conn, "/images/logo.svg") %>" alt="logo">
         </a>
+        <%= if assigns[:board] do %>
+          <h1 class="title"><%= @board.title %></h1>
+        <% end %>
       </section>
     </header>
     <%= @inner_content %>

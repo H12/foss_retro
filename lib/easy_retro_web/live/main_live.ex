@@ -3,7 +3,7 @@ defmodule EasyRetroWeb.MainLive do
 
   def render(assigns) do
     ~L"""
-    <section class="phx-hero">
+    <section class="hero">
       <h1>Welcome to EasyRetro!</h1>
       <p><i>Easy retrospectives for agile development</i></p>
       <div class="main-container">
