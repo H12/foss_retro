@@ -7,9 +7,11 @@
           <input type="text" name="content" phx-value-category="<%= category_key %>" placeholder="Add a card">
           <input type="hidden" name="category" value="<%= category_key %>">
         </form>
-        <%= for %{ content: content }<- @board.cards[category_key] do %>
-          <div class="card"><span class="content"><%= content %></span></div>
-        <% end %>
+        <div class="cards">
+          <%= for %{ content: content }<- @board.cards[category_key] do %>
+            <div class="card"><span class="content"><%= content %></span></div>
+          <% end %>
+        </div>
       </div>
     <% end %>
     <div class="category">

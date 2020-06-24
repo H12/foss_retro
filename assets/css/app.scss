@@ -174,11 +174,10 @@ header {
 .board {
   display: flex;
   height: 100%;
-  overflow: auto;
+  overflow-y: hidden;
 
   .category {
-    padding: 16px;
-    min-width: 226px;
+    min-width: 240px;
 
     display: flex;
     flex-direction: column;
@@ -189,24 +188,33 @@ header {
       text-align: center;
     }
 
-    .card {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 16px 0;
-      padding: 32px;
-      min-height: 120px;
-      width: 100%;
-      border-radius: 4px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.25),
-      0 2px 4px rgba(0,0,0,0.20),
-      0 4px 6px rgba(0,0,0,0.15);
+    > .add-card {
+      margin: 0 16px;
 
+      input { margin: 0 }
+    }
 
-      .content {
+    .cards {
+      padding: 0 16px;
+      overflow-y: auto;
+
+      .card {
         display: flex;
-        text-align: center;
-        font-size: 12px;
+        align-items: center;
+        justify-content: center;
+        margin: 16px 0;
+        padding: 32px;
+        min-height: 120px;
+        width: 100%;
+        border: 1px solid #dadada;
+        border-radius: 4px;
+
+
+        .content {
+          display: flex;
+          text-align: center;
+          font-size: 12px;
+        }
       }
     }
   }
