@@ -174,28 +174,48 @@ header {
 .board {
   display: flex;
   height: 100%;
+  padding: 0 16px;
   overflow-y: hidden;
 
   .category {
-    min-width: 240px;
+    min-width: 320px;
 
     display: flex;
     flex-direction: column;
 
+    input {
+      margin: 0;
+      border: 1px solid #cacaca;
+      height: 42px;
+    }
+
+    > .add-category {
+      height: 115px;
+      border-bottom: 1px solid #eaeaea;
+      display: flex;
+      align-items: flex-end;
+      margin: 0 16px 0 0;
+      padding: 16px;
+    }
+
     > .name {
       width: 100%;
-      font-size: 16px;
+      padding: 16px 16px 0;
+      font-size: 24px;
+      line-height: 24px;
       text-align: center;
     }
 
     > .add-card {
-      margin: 0 16px;
-
-      input { margin: 0 }
+      margin: 0;
+      padding: 16px;
+      border-bottom: 1px solid #eaeaea;
     }
 
     .cards {
-      padding: 0 16px;
+      border-right: 1px solid #eaeaea;
+      flex: 1;
+      padding: 0 24px;
       overflow-y: auto;
 
       .card {
@@ -203,7 +223,7 @@ header {
         flex-direction: column;
         margin: 16px 0;
         align-items: center;
-        min-height: 120px;
+        min-height: 144px;
         width: 100%;
         border: 1px solid #dadada;
         border-radius: 4px;
@@ -212,10 +232,11 @@ header {
 
         > .content {
           display: flex;
+          margin: 16px;
           flex: 1;
           align-items: center;
           text-align: center;
-          font-size: 12px;
+          font-size: 16px;
         }
 
         > .icons {

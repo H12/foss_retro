@@ -5,13 +5,13 @@ defmodule CardComponent do
     ~L"""
     <div class="card">
       <div class="icons icons-top">
-        <i class="lni lni-sm lni-close"></i>
+        <i class="lni lni-close"></i>
       </div>
       <div class="content">
         <span><%= @content %></span>
       </div>
       <div class="icons icons-bottom">
-        <i class="lni lni-sm lni-bubble"></i>
+        <i class="lni lni-bubble"></i>
       </div>
     </div>
     """
