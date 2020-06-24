@@ -90,13 +90,56 @@
   display: none;
 }
 
-/* Text styling */
-.key-link {
-  font-size: 42px;
-  font-family: Courier;
+/* Header */
+header {
+  background: #fdfdfd;
+  border-bottom: 1px solid #eaeaea;
+
+  section {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    nav, .logo {
+      flex: 1;
+    }
+
+    nav {
+      ul, li {
+        margin: 0;
+        padding: 0;
+        display: block;
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      ul {
+        margin: 1rem;
+        margin-top: 0;
+      }
+    }
+
+    a, .logo {
+      display: block;
+      position: relative;
+      height: 100%;
+    }
+
+    .logo > img {
+      height: 100%;
+    }
+
+    .title {
+      max-width: 50%;
+      text-align: center;
+      font-size: 2em;
+    }
+  }
 }
 
-/* Landing Page Styling */
+/* Landing Page */
 .main-container {
   display: flex;
 
@@ -106,8 +149,9 @@
   }
 }
 
+/* Hero */
 .hero {
-  margin: 0 auto;
+  margin: 32px auto;
   max-width: 80.0rem;
   padding: 0 2.0rem;
   position: relative;
@@ -129,6 +173,7 @@
 /* Retro Board Styling */
 .board {
   display: flex;
+  height: 100%;
   overflow: auto;
 
   .category {

@@ -1,5 +1,5 @@
 <%= if @board do %>
-  <div class="board">
+  <section class="board">
     <%= for { category_key, category_name } <- @board.categories do %>
       <div class="category">
         <div class="name"><%= category_name %></div>
@@ -17,7 +17,7 @@
         <input type="text" name="name" placeholder="Add a category">
       </form>
     </div>
-  </div>
+  </section>
 <% else %>
   <section class="hero">
     <h1>Let's retro!</h1>

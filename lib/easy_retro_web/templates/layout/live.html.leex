@@ -1,13 +1,13 @@
 <header>
   <section class="container">
-    <nav role="navigation">
-    </nav>
     <a class="logo" href="/">
       <img src="<%= EasyRetroWeb.Endpoint.static_path("/images/logo.svg") %>" alt="logo">
     </a>
     <%= if assigns[:board] do %>
-      <h1 class="title"><%= @board.title %></h1>
+      <div class="title"><%= @board.title %></div>
     <% end %>
+    <nav role="navigation">
+    </nav>
   </section>
 </header>
 <main role="main" class="container">
