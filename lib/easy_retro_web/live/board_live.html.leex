@@ -8,8 +8,8 @@
           <input type="hidden" name="category" value="<%= category_key %>">
         </form>
         <div class="cards">
-          <%= for %{ content: content }<- @board.cards[category_key] do %>
-            <div class="card"><span class="content"><%= content %></span></div>
+          <%= for %{ content: content } <- @board.cards[category_key] do %>
+            <%= live_component @socket, CardComponent, content: content %>
           <% end %>
         </div>
       </div>
