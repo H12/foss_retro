@@ -22,6 +22,15 @@ defmodule EasyRetro.Core.Board do
     |> Map.put(:card_count, board.card_count + 1)
   end
 
+  def remove_card(board, category_key, card_index) do
+    old_cards = Map.get(board.cards, category_key)
+    new_cards = Map.put(board.cards, category_key, List.delete_at(old_cards, card_index))
+
+    board
+    |> Map.put(:cards, new_cards)
+    |> Map.put(:card_count, board.card_count + 1)
+  end
+
   def add_category(board, name) do
     old_cards = board.cards
     old_categories = board.categories

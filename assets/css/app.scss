@@ -246,6 +246,12 @@ header {
 
           &.icons-top { padding-top: 12px; }
           &.icons-bottom { padding-bottom: 12px; }
+
+          .lni {
+            cursor: pointer;
+
+            &:hover { color: #aaaaaa; }
+          }
         }
       }
     }

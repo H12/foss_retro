@@ -44,6 +44,12 @@ defmodule EasyRetro.Boundary.BoardSession do
   end
 
   @impl GenServer
+  def handle_call({:remove_card, category_key, card_index}, _from, board) do
+    new_board = Board.remove_card(board, category_key, card_index)
+    {:reply, new_board, new_board}
+  end
+
+  @impl GenServer
   def handle_call({:add_category, name}, _from, board) do
     new_board = Board.add_category(board, name)
     {:reply, new_board, new_board}
@@ -56,6 +62,10 @@ defmodule EasyRetro.Boundary.BoardSession do
 
   def add_card(registry_name, category_key, content) do
     GenServer.call(via(registry_name), {:add_card, category_key, content})
+  end
+
+  def remove_card(registry_name, category_key, card_index) do
+    GenServer.call(via(registry_name), {:remove_card, category_key, card_index})
   end
 
   def add_category(registry_name, name) do

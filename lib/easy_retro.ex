@@ -33,6 +33,14 @@ defmodule EasyRetro do
     |> notify_subscribers([:board, :updated])
   end
 
+  def remove_card(board, category_key, card_index) do
+    board
+    |> registry_name_for_board()
+    |> BoardSession.remove_card(category_key, card_index)
+    |> BoardManager.update_board()
+    |> notify_subscribers([:board, :updated])
+  end
+
   def add_category(board, category_name) do
     board
     |> registry_name_for_board()

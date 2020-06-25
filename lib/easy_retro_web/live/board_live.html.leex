@@ -8,8 +8,8 @@
           <input type="hidden" name="category" value="<%= category_key %>">
         </form>
         <div class="cards">
-          <%= for %{ content: content } <- @board.cards[category_key] do %>
-            <%= live_component @socket, CardComponent, content: content %>
+          <%= for {card, index} <- Enum.with_index(@board.cards[category_key]) do %>
+            <%= live_component @socket, CardComponent, id: card.id, board: @board, category_key: category_key, index: index, card: card%>
           <% end %>
         </div>
       </div>
