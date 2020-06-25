@@ -1,5 +1,6 @@
 defmodule EasyRetroWeb.BoardLive do
   use EasyRetroWeb, :live_view
+  alias EasyRetro.Core.Board
 
   def mount(%{"key" => key}, _session, socket) do
     EasyRetro.subscribe()
@@ -44,10 +45,11 @@ defmodule EasyRetroWeb.BoardLive do
   end
 
   defp maybe_assign_board(socket, board) do
-    if board.key == socket.assigns.board.key do
+    with %Board{key: key} <- socket.assigns.board,
+         true <- board.key == key do
       assign(socket, board: board)
     else
-      socket
+      _ -> socket
     end
   end
 end
