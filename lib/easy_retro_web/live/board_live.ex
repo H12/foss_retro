@@ -51,4 +51,3 @@ defmodule EasyRetroWeb.BoardLive do
     end
   end
 end
-

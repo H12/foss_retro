@@ -3,6 +3,7 @@ defmodule EasyRetro do
   The main API for interacting with EasyRetro's OTP business logic
   """
   alias EasyRetro.Boundary.{BoardManager, BoardSession}
+  alias EasyRetro.Core.Board
 
   @topic inspect(__MODULE__)
 
@@ -65,7 +66,7 @@ defmodule EasyRetro do
 
   defp notify_subscribers({:error, reason}, _event), do: {:error, reason}
 
-  defp notify_subscribers(%EasyRetro.Core.Board{key: key}, event), do: notify_subscribers({:ok, key}, event)
+  defp notify_subscribers(%Board{key: key}, event), do: notify_subscribers({:ok, key}, event)
 
   defp notify_subscribers({_title, key}, event), do: notify_subscribers({:ok, key}, event)
 

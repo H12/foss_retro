@@ -56,7 +56,7 @@ defmodule EasyRetro.Boundary.BoardSession do
   end
 
   @impl GenServer
-  def handle_call({:view_board}, _from, board) do 
+  def handle_call({:view_board}, _from, board) do
     {:reply, board, board}
   end
 
