@@ -14,5 +14,8 @@ stop:
 console:
 	docker-compose run --rm app iex -S mix
 
+format:
+	docker-compose run --rm app mix format
+
 tests:
 	docker-compose run --rm -e "MIX_ENV=test" app mix test
