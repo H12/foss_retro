@@ -27,6 +27,10 @@ defmodule EasyRetro.Core.Board do
     |> elem(1)
   end
 
+  def add_comment(board, card_id, comment) do
+    update_in(board, card_path(card_id), &Card.add_comment(&1, comment))
+  end
+
   def add_category(board, name) do
     put_in(board.categories[map_size(board.categories)], %{name: name, cards: []})
   end

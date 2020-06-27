@@ -42,6 +42,14 @@ defmodule EasyRetro do
     |> notify_subscribers([:board, :updated])
   end
 
+  def add_comment(board, card_id, comment) do
+    board
+    |> registry_name_for_board()
+    |> BoardSession.add_comment(card_id, comment)
+    |> BoardManager.update_board()
+    |> notify_subscribers({:board, :updated})
+  end
+
   def add_category(board, category_name) do
     board
     |> registry_name_for_board()

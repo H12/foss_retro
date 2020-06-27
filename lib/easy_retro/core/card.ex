@@ -7,4 +7,8 @@ defmodule EasyRetro.Core.Card do
       content: content
     }
   end
+
+  def add_comment(card, comment) do
+    Map.replace!(card, :comments, [comment | card.comments])
+  end
 end
