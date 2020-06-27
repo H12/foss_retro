@@ -11,33 +11,30 @@ defmodule EasyRetro.Core.Board do
   end
 
   @spec add_card(map(), integer(), binary()) :: map()
-  def add_card(board, category_key, content) do
-    new_card = Card.new(board.card_count, content)
-
-    old_cards = Map.get(board.cards, category_key)
-    new_cards = Map.put(board.cards, category_key, [new_card | old_cards])
+  def add_card(board, category_id, content) do
+    new_card_id = board.card_count
 
     board
-    |> Map.put(:cards, new_cards)
+    |> put_in(card_path(new_card_id), Card.new(new_card_id, content))
+    |> update_in(category_cards_path(category_id), &[new_card_id | &1])
     |> Map.put(:card_count, board.card_count + 1)
   end
 
-  def remove_card(board, category_key, card_index) do
-    old_cards = Map.get(board.cards, category_key)
-    new_cards = Map.put(board.cards, category_key, List.delete_at(old_cards, card_index))
-
+  def remove_card(board, category_id, card_id) do
     board
-    |> Map.put(:cards, new_cards)
-    |> Map.put(:card_count, board.card_count + 1)
+    |> update_in(category_cards_path(category_id), &List.delete(&1, card_id))
+    |> pop_in(card_path(card_id))
+    |> elem(1)
   end
 
   def add_category(board, name) do
-    old_cards = board.cards
-    old_categories = board.categories
+    put_in(board.categories[map_size(board.categories)], %{name: name, cards: []})
+  end
 
-    board
-    |> Map.put(:categories, Map.put(old_categories, map_size(old_categories), name))
-    |> Map.put(:cards, Map.put(old_cards, map_size(old_cards), []))
+  defp card_path(card_id), do: [:cards, card_id] |> Enum.map(&Access.key/1)
+
+  defp category_cards_path(category_id) do
+    [:categories, category_id, :cards] |> Enum.map(&Access.key/1)
   end
 
   defp generate_key(key_length \\ 5) do

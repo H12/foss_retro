@@ -18,9 +18,7 @@ defmodule CardComponent do
   end
 
   def handle_event("remove_card", _value, socket) do
-    %{board: board, category_key: category_key, index: index} = socket.assigns
-    new_board = EasyRetro.remove_card(board, category_key, index)
-
-    {:noreply, assign(socket, board: new_board)}
+    %{id: card_id, board: board, category_id: category_id} = socket.assigns
+    {:noreply, assign(socket, board: EasyRetro.remove_card(board, category_id, card_id))}
   end
 end

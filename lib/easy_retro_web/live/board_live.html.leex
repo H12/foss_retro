@@ -1,15 +1,15 @@
 <%= if @board do %>
   <section class="board">
-    <%= for { category_key, category_name } <- @board.categories do %>
+    <%= for { category_id, %{cards: card_ids, name: category_name} } <- @board.categories do %>
       <div class="category">
         <div class="name"><%= category_name %></div>
         <form class="add-card" phx-submit="add_card">
-          <input type="text" name="content" phx-value-category="<%= category_key %>" placeholder="Add a card">
-          <input type="hidden" name="category" value="<%= category_key %>">
+          <input type="text" name="content" phx-value-category="<%= category_id %>" placeholder="Add a card">
+          <input type="hidden" name="category" value="<%= category_id %>">
         </form>
         <div class="cards">
-          <%= for {card, index} <- Enum.with_index(@board.cards[category_key]) do %>
-            <%= live_component @socket, CardComponent, id: card.id, board: @board, category_key: category_key, index: index, card: card%>
+          <%= for card_id <- card_ids do %>
+            <%= live_component @socket, CardComponent, id: card_id, board: @board, category_id: category_id, card: @board.cards[card_id]%>
           <% end %>
         </div>
       </div>
