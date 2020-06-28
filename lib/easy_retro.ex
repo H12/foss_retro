@@ -47,7 +47,7 @@ defmodule EasyRetro do
     |> registry_name_for_board()
     |> BoardSession.add_comment(card_id, comment)
     |> BoardManager.update_board()
-    |> notify_subscribers({:board, :updated})
+    |> notify_subscribers([card_id, :card, :updated])
   end
 
   def add_category(board, category_name) do
@@ -66,6 +66,13 @@ defmodule EasyRetro do
     end
   end
 
+  defp notify_subscribers({:ok, board_key, card_id}, event) do
+    board = lookup_board_by_key(board_key)
+    card = board.cards[card_id]
+    Phoenix.PubSub.broadcast(EasyRetro.PubSub, @topic, {__MODULE__, event, card})
+    board
+  end
+
   defp notify_subscribers({:ok, key}, event) do
     board = lookup_board_by_key(key)
     Phoenix.PubSub.broadcast(EasyRetro.PubSub, @topic, {__MODULE__, event, board})
@@ -73,6 +80,10 @@ defmodule EasyRetro do
   end
 
   defp notify_subscribers({:error, reason}, _event), do: {:error, reason}
+
+  defp notify_subscribers(%Board{key: key}, [card_id | event]) when is_integer(card_id) do
+    notify_subscribers({:ok, key, card_id}, event)
+  end
 
   defp notify_subscribers(%Board{key: key}, event), do: notify_subscribers({:ok, key}, event)
 

@@ -223,7 +223,6 @@ header {
         flex-direction: column;
         margin: 16px 0;
         align-items: center;
-        min-height: 144px;
         width: 100%;
         border: 1px solid #dadada;
         border-radius: 4px;
@@ -233,6 +232,7 @@ header {
         > .content {
           display: flex;
           margin: 16px;
+          min-height: 72px;
           flex: 1;
           align-items: center;
           text-align: center;
@@ -251,6 +251,22 @@ header {
             cursor: pointer;
 
             &:hover { color: #aaaaaa; }
+          }
+        }
+
+        .add-comment { margin-bottom: 16px; }
+
+        .comments {
+          width: 100%;
+          padding: 12px 24px;
+
+          &.hidden { display: none; }
+
+          .comment {
+            font-size: 12px;
+            border-top: 1px solid #eaeaea;
+            padding-top: 8px;
+            margin-bottom: 8px;
           }
         }
       }

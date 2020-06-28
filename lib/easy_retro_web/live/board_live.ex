@@ -29,6 +29,11 @@ defmodule EasyRetroWeb.BoardLive do
     {:noreply, maybe_assign_board(socket, board)}
   end
 
+  def handle_info({EasyRetro, [:card, :updated], card}, socket) do
+    send_update(CardComponent, id: card.id, card: card, new_update: true)
+    {:noreply, socket}
+  end
+
   def handle_event("join", %{"key" => key}, socket) do
     {:noreply, push_patch(socket, to: Routes.live_path(socket, __MODULE__, key))}
   end

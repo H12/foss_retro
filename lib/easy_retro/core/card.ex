@@ -1,5 +1,5 @@
 defmodule EasyRetro.Core.Card do
-  defstruct [:id, :content, comments: [], votes: 0]
+  defstruct [:id, :content, collapsed: true, comments: [], votes: 0]
 
   def new(id, content) do
     %__MODULE__{
