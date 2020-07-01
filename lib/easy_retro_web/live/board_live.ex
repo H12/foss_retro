@@ -29,8 +29,8 @@ defmodule EasyRetroWeb.BoardLive do
     {:noreply, maybe_assign_board(socket, board)}
   end
 
-  def handle_info({EasyRetro, [:card, :updated], card}, socket) do
-    send_update(CardComponent, id: card.id, card: card, new_update: true)
+  def handle_info({EasyRetro, [:comment, :added], card}, socket) do
+    send_update(CommentsComponent, id: card.id, board: socket.assigns.board, comments: card.comments)
     {:noreply, socket}
   end
 

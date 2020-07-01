@@ -256,17 +256,19 @@ header {
 
         .add-comment { margin-bottom: 16px; }
 
-        .comments {
+        .comments-container {
           width: 100%;
           padding: 12px 24px;
 
           &.hidden { display: none; }
 
-          .comment {
-            font-size: 12px;
-            border-top: 1px solid #eaeaea;
-            padding-top: 8px;
-            margin-bottom: 8px;
+          .comments{
+            .comment {
+              font-size: 12px;
+              border-top: 1px solid #eaeaea;
+              padding-top: 8px;
+              margin-bottom: 8px;
+            }
           }
         }
       }

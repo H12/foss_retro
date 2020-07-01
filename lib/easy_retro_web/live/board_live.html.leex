@@ -9,7 +9,7 @@
         </form>
         <div id="category_<%= category_id %>" class="cards" phx-update="prepend">
           <%= for card_id <- card_ids do %>
-            <%= live_component @socket, CardComponent, id: card_id, board: @board, card: @board.cards[card_id], category_id: category_id, is_hidden: true %>
+            <%= live_component @socket, CardComponent, id: card_id, board: @board, card: @board.cards[card_id] %>
           <% end %>
         </div>
       </div>
