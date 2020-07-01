@@ -3,7 +3,7 @@ defmodule CardComponent do
 
   def render(assigns) do
     ~L"""
-    <div class="card">
+    <div id="card-<%= @id %>" class="card">
       <div class="icons icons-top">
         <i phx-click="remove_card" phx-target="<%= @myself %>" class="lni lni-close"></i>
       </div>
