@@ -6,7 +6,7 @@ services:
   app:
     build: .
     env_file: .env
-    command: mix phx.server
+    command: bash -c "cd assets && npm install && cd .. && mix phx.server"
     volumes:
       - .:/app
       - node_modules:/app/assets/node_modules
