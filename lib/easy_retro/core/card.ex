@@ -7,4 +7,12 @@ defmodule EasyRetro.Core.Card do
       content: content
     }
   end
+
+  def add_vote(card) do
+    update_in(card.votes, &(&1 + 1))
+  end
+
+  def remove_vote(card) do
+    update_in(card.votes, &(&1 - 1))
+  end
 end

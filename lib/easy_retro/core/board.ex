@@ -1,7 +1,7 @@
 defmodule EasyRetro.Core.Board do
   alias EasyRetro.Core.Card
 
-  defstruct [:key, :title, card_count: 0, cards: %{}, categories: %{}]
+  defstruct [:key, :title, card_count: 0, cards: %{}, categories: %{}, voters: %{}]
 
   def new(title) do
     %__MODULE__{
@@ -30,6 +30,29 @@ defmodule EasyRetro.Core.Board do
   def add_category(board, name) do
     put_in(board.categories[map_size(board.categories)], %{name: name, cards: []})
   end
+
+  def add_vote(board, voter_id, card_id) do
+    board
+    |> update_in(card_path(card_id), &Card.add_vote/1)
+    |> maybe_add_voter(voter_id)
+    |> update_in(voter_path(voter_id), &[card_id | &1])
+  end
+
+  def remove_vote(board, voter_id, card_id) do
+    board
+    |> update_in(card_path(card_id), &Card.remove_vote/1)
+    |> update_in(voter_path(voter_id), &List.delete(&1, card_id))
+  end
+
+  defp maybe_add_voter(board, voter_id) do
+    if is_list(board.voters[voter_id]) do
+      board
+    else
+      put_in(board.voters[voter_id], [])
+    end
+  end
+
+  defp voter_path(voter_id), do: [:voters, voter_id] |> Enum.map(&Access.key/1)
 
   defp card_path(card_id), do: [:cards, card_id] |> Enum.map(&Access.key/1)
 
