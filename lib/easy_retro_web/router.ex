@@ -20,7 +20,7 @@ defmodule EasyRetroWeb.Router do
     get "/", MainController, :index
     live "/create", CreateLive
     live "/board", BoardLive
-    live "/board/:key", BoardLive, session: %{"votes" => %{}}
+    live "/board/:key", BoardLive
     live "/boards", ListLive
   end
 
