@@ -1,4 +1,4 @@
-defmodule EasyRetroWeb.MainView do
+defmodule EasyRetroWeb.BoardView do
   use EasyRetroWeb, :view
 
   def render("index.html", assigns) do
@@ -7,8 +7,8 @@ defmodule EasyRetroWeb.MainView do
       <h1>Welcome to EasyRetro!</h1>
       <p><i>Easy retrospectives for agile development</i></p>
       <div class="main-container">
-        <%= link "Start a Retro", to: Routes.main_path(@conn, :new), class: "button" %>
-        <%= link "Find a Retro", to: Routes.main_path(@conn, :find), class: "button button-outline" %>
+    <%= link "Start a Retro", to: Routes.board_path(@conn, :new), class: "button" %>
+        <%= link "Find a Retro", to: Routes.board_path(@conn, :find), class: "button button-outline" %>
       </div>
     </section>
     """
@@ -18,7 +18,7 @@ defmodule EasyRetroWeb.MainView do
     ~E"""
     <section class="hero">
       <h1>Start that Retro!</h1>
-      <%= form_for @conn, Routes.main_path(@conn, :create), fn f -> %>
+      <%= form_for @conn, Routes.board_path(@conn, :create), fn f -> %>
         <%= text_input f, :title %>
         <%= submit "Create Retro!" %>
       <% end %>
@@ -30,7 +30,7 @@ defmodule EasyRetroWeb.MainView do
     ~E"""
     <section class="hero">
       <h1>Let's retro!</h1>
-      <%= form_for @conn, Routes.main_path(@conn, :join), fn f -> %>
+      <%= form_for @conn, Routes.board_path(@conn, :join), fn f -> %>
         <%= text_input f, :key %>
         <%= submit "Join Retro!" %>
       <% end %>

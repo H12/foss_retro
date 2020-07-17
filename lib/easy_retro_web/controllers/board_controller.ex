@@ -1,4 +1,4 @@
-defmodule EasyRetroWeb.MainController do
+defmodule EasyRetroWeb.BoardController do
   use EasyRetroWeb, :controller
 
   def index(conn, _params) do

@@ -17,11 +17,11 @@ defmodule EasyRetroWeb.Router do
   scope "/", EasyRetroWeb do
     pipe_through :browser
 
-    get "/", MainController, :index
-    get "/new", MainController, :new
-    post "/create", MainController, :create
-    get "/find", MainController, :find
-    post "/join", MainController, :join
+    get "/", BoardController, :index
+    get "/new", BoardController, :new
+    post "/create", BoardController, :create
+    get "/find", BoardController, :find
+    post "/join", BoardController, :join
     live "/board/:key", BoardLive
     live "/boards", ListLive
   end
