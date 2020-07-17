@@ -7,7 +7,7 @@ defmodule EasyRetroWeb.BoardView do
       <h1>Welcome to EasyRetro!</h1>
       <p><i>Easy retrospectives for agile development</i></p>
       <div class="main-container">
-    <%= link "Start a Retro", to: Routes.board_path(@conn, :new), class: "button" %>
+        <%= link "Start a Retro", to: Routes.board_path(@conn, :new), class: "button" %>
         <%= link "Find a Retro", to: Routes.board_path(@conn, :find), class: "button button-outline" %>
       </div>
     </section>

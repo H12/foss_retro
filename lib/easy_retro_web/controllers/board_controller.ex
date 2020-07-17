@@ -19,7 +19,13 @@ defmodule EasyRetroWeb.BoardController do
   end
 
   def join(conn, %{"key" => key}) do
-    %{key: key} = EasyRetro.lookup_board_by_key(key)
-    redirect(conn, to: "/board/" <> key)
+    with %{key: key} <- EasyRetro.lookup_board_by_key(key) do
+      redirect(conn, to: "/board/" <> key)
+    else
+      _ ->
+        conn
+        |> put_flash(:error, "No board exists with the key '#{key}'")
+        |> render("find.html")
+    end
   end
 end

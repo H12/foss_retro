@@ -64,7 +64,8 @@
 /* Alerts and form errors */
 .alert {
   padding: 15px;
-  margin-bottom: 20px;
+  margin: 8px auto;
+  max-width: 80rem;
   border: 1px solid transparent;
   border-radius: 4px;
 }
