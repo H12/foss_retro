@@ -1,8 +1,0 @@
-<section class="hero">
-  <h1>Welcome to EasyRetro!</h1>
-  <p><i>Easy retrospectives for agile development</i></p>
-  <div class="main-container">
-    <%= link "Start a Retro", to: Routes.live_path(@conn, EasyRetroWeb.CreateLive), class: "button" %>
-    <%= link "Join a Retro", to: Routes.live_path(@conn, EasyRetroWeb.BoardLive), class: "button button-outline" %>
-  </div>
-</section>

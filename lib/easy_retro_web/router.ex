@@ -18,8 +18,10 @@ defmodule EasyRetroWeb.Router do
     pipe_through :browser
 
     get "/", MainController, :index
-    live "/create", CreateLive
-    live "/board", BoardLive
+    get "/new", MainController, :new
+    post "/create", MainController, :create
+    get "/find", MainController, :find
+    post "/join", MainController, :join
     live "/board/:key", BoardLive
     live "/boards", ListLive
   end
