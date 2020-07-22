@@ -5,27 +5,27 @@ defmodule EasyRetroWeb.BoardController do
     render(conn, "index.html")
   end
 
-  def new(conn, _params) do
-    render(conn, "new.html", changeset: :title)
+  def start(%{method: "GET"} = conn, _params) do
+    render(conn, "start.html", changeset: :title)
   end
 
-  def create(conn, %{"title" => title}) do
+  def start(%{method: "POST"} = conn, %{"title" => title}) do
     %{key: key} = EasyRetro.build_board(title)
     redirect(conn, to: "/board/" <> key)
   end
 
-  def find(conn, _params) do
-    render(conn, "find.html")
+  def join(%{method: "GET"} = conn, _params) do
+    render(conn, "join.html")
   end
 
-  def join(conn, %{"key" => key}) do
+  def join(%{method: "POST"} = conn, %{"key" => key}) do
     with %{key: key} <- EasyRetro.lookup_board_by_key(key) do
       redirect(conn, to: "/board/" <> key)
     else
       _ ->
         conn
         |> put_flash(:error, "No board exists with the key '#{key}'")
-        |> render("find.html")
+        |> render("join.html")
     end
   end
 end

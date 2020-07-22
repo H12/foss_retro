@@ -7,18 +7,18 @@ defmodule EasyRetroWeb.BoardView do
       <h1>Welcome to EasyRetro!</h1>
       <p><i>Easy retrospectives for agile development</i></p>
       <div class="main-container">
-        <%= link "Start a Retro", to: Routes.board_path(@conn, :new), class: "button" %>
-        <%= link "Find a Retro", to: Routes.board_path(@conn, :find), class: "button button-outline" %>
+        <%= link "Start a Retro", to: Routes.board_path(@conn, :start), class: "button" %>
+        <%= link "Join a Retro", to: Routes.board_path(@conn, :join), class: "button button-outline" %>
       </div>
     </section>
     """
   end
 
-  def render("new.html", assigns) do
+  def render("start.html", assigns) do
     ~E"""
     <section class="hero">
       <h1>Start that Retro!</h1>
-      <%= form_for @conn, Routes.board_path(@conn, :create), fn f -> %>
+      <%= form_for @conn, Routes.board_path(@conn, :start), fn f -> %>
         <%= text_input f, :title %>
         <%= submit "Create Retro!" %>
       <% end %>
@@ -26,7 +26,7 @@ defmodule EasyRetroWeb.BoardView do
     """
   end
 
-  def render("find.html", assigns) do
+  def render("join.html", assigns) do
     ~E"""
     <section class="hero">
       <h1>Let's retro!</h1>

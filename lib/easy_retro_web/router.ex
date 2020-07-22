@@ -18,9 +18,9 @@ defmodule EasyRetroWeb.Router do
     pipe_through :browser
 
     get "/", BoardController, :index
-    get "/new", BoardController, :new
-    post "/create", BoardController, :create
-    get "/find", BoardController, :find
+    get "/start", BoardController, :start
+    post "/start", BoardController, :start
+    get "/join", BoardController, :join
     post "/join", BoardController, :join
     live "/board/:key", BoardLive
     live "/boards", ListLive
