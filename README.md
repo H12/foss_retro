@@ -40,6 +40,7 @@ Choose your preferred method of installation. This project's creator likes [`asd
 - Erlang `22.2.x`
 - Elixir `1.10.x`
 - Phoenix `1.5.x`
+- NodeJS `12.x.x`
 
 #### Commands
 
