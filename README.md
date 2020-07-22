@@ -21,6 +21,8 @@ You can use `docker-compose` commands directly, but this project has a Makefile 
 - Start Phoenix endpoint with `make start`
 - Stop Phoenix endpoint with `make stop`
 - Start a containerized console with `make console`
+- Auto-format your elixir code with `make format`
+- Update your elixir and javascript dependencies with `make update`
 - Run the tests with `make tests`
 
 #### Dependencies
