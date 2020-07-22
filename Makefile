@@ -17,5 +17,9 @@ console:
 format:
 	docker-compose run --rm app mix format
 
+update:
+	docker-compose run --rm app mix do deps.update --all, deps.compile &&\
+	docker-compose run --rm app bash -c "cd assets && npm update"
+
 tests:
 	docker-compose run --rm -e "MIX_ENV=test" app mix test
