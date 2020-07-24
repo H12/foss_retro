@@ -1,31 +1,21 @@
-<%= if @board do %>
-  <section class="board">
-    <%= for { category_id, %{cards: card_ids, name: category_name} } <- @board.categories do %>
-      <div class="category">
-        <div class="name"><%= category_name %></div>
-        <form class="add-card" phx-submit="add_card">
-          <input type="text" name="content" phx-value-category="<%= category_id %>" placeholder="Add a card">
-          <input type="hidden" name="category" value="<%= category_id %>">
-        </form>
-        <div id="category-<%= category_id %>" class="cards">
-          <%= for card_id <- card_ids do %>
-            <%= live_component @socket, CardComponent, id: card_id, board: @board, category_id: category_id, card: @board.cards[card_id]%>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
+<section class="board">
+  <%= for { category_id, %{cards: card_ids, name: category_name} } <- @board.categories do %>
     <div class="category">
-      <form class="add-category" phx-submit="add_category">
-        <input type="text" name="name" placeholder="Add a category">
+      <div class="name"><%= category_name %></div>
+      <form class="add-card" phx-submit="add_card">
+        <input type="text" name="content" phx-value-category="<%= category_id %>" placeholder="Add a card">
+        <input type="hidden" name="category" value="<%= category_id %>">
       </form>
+      <div id="category-<%= category_id %>" class="cards">
+        <%= for card_id <- card_ids do %>
+          <%= live_component @socket, CardComponent, id: card_id, board: @board, category_id: category_id, card: @board.cards[card_id]%>
+        <% end %>
+      </div>
     </div>
-  </section>
-<% else %>
-  <section class="hero">
-    <h1>Let's retro!</h1>
-    <form phx-submit="join">
-      <input type="text" name="key" placeholder="Enter a retro board key">
-      <button type="submit" value="Join">Join Retro!</button>
+  <% end %>
+  <div class="category">
+    <form class="add-category" phx-submit="add_category">
+      <input type="text" name="name" placeholder="Add a category">
     </form>
-  </section>
-<% end %>
+  </div>
+</section>

@@ -2,7 +2,7 @@ defmodule EasyRetroWeb.BoardLive do
   use EasyRetroWeb, :live_view
   alias EasyRetro.Core.Board
 
-  def mount(%{"key" => key}, _session, socket) do
+  def mount(_params, %{"key" => key}, socket) do
     EasyRetro.subscribe()
     {:ok, assign(socket, board: EasyRetro.lookup_board_by_key(key))}
   end
@@ -12,25 +12,12 @@ defmodule EasyRetroWeb.BoardLive do
     {:ok, assign(socket, board: nil)}
   end
 
-  def handle_params(%{"key" => key}, _uri, socket) do
-    board = EasyRetro.lookup_board_by_key(key)
-    {:noreply, assign(socket, board: board)}
-  end
-
-  def handle_params(_params, _uri, socket) do
-    {:noreply, assign(socket, board: nil)}
-  end
-
   def handle_info({EasyRetro, [:board, :built], _board}, socket) do
     {:noreply, socket}
   end
 
   def handle_info({EasyRetro, [:board, :updated], board}, socket) do
     {:noreply, maybe_assign_board(socket, board)}
-  end
-
-  def handle_event("join", %{"key" => key}, socket) do
-    {:noreply, push_patch(socket, to: Routes.live_path(socket, __MODULE__, key))}
   end
 
   def handle_event("add_category", %{"name" => name}, socket) do

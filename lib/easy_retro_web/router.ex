@@ -22,7 +22,8 @@ defmodule EasyRetroWeb.Router do
     post "/start", BoardController, :start
     get "/join", BoardController, :join
     post "/join", BoardController, :join
-    live "/board/:key", BoardLive
+    get "/board/:key", BoardController, :board_live
+
     live "/boards", ListLive
   end
 

@@ -1,16 +1,4 @@
-<header>
-  <section class="container">
-    <a class="logo" href="/">
-      <img src="<%= EasyRetroWeb.Endpoint.static_path("/images/logo.svg") %>" alt="logo">
-    </a>
-    <%= if assigns[:board] do %>
-      <div class="title"><%= @board.title %></div>
-    <% end %>
-    <nav role="navigation">
-    </nav>
-  </section>
-</header>
-<main role="main" class="container">
+<main role="main" class="live-container">
   <p class="alert alert-info" role="alert"
     phx-click="lv:clear-flash"
     phx-value-key="info"><%= live_flash(@flash, :info) %></p>

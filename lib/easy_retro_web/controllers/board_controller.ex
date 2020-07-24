@@ -28,4 +28,11 @@ defmodule EasyRetroWeb.BoardController do
         |> render("join.html")
     end
   end
+
+  def board_live(conn, %{"key" => key}) do
+    Phoenix.LiveView.Controller.live_render(conn, EasyRetroWeb.BoardLive,
+      id: "board-live",
+      session: %{"key" => key}
+    )
+  end
 end

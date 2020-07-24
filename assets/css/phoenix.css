@@ -24,12 +24,16 @@ header {
   height: 96px;
 }
 
-main {
+main:not(.live-container) {
   position: absolute;
   top: 96px;
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+main.live-container {
+  height: 100%;
 }
 
 h1{font-size: 3.6rem; line-height: 1.25}
