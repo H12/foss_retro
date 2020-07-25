@@ -14,26 +14,19 @@ html, body, div.phx-connected {
   height: 100%;
 }
 
-body { font-family: 'Quicksand', 'Helvetica', 'Arial', sans-serif }
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Quicksand', 'Helvetica', 'Arial', sans-serif;
+}
 
 header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
   height: 96px;
 }
 
-main:not(.live-container) {
-  position: absolute;
-  top: 96px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
-main.live-container {
+main {
   height: 100%;
+  flex: 1;
 }
 
 h1{font-size: 3.6rem; line-height: 1.25}
