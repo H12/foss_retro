@@ -30,9 +30,24 @@ defmodule EasyRetroWeb.BoardController do
   end
 
   def board_live(conn, %{"key" => key}) do
-    Phoenix.LiveView.Controller.live_render(conn, EasyRetroWeb.BoardLive,
+    # TODO: Add ability for users to set their own name, and codify it into the token
+    user_token = Phoenix.Token.sign(EasyRetroWeb.Endpoint, "user token", "user name")
+
+    conn
+    |> maybe_put_session(:user_token, user_token)
+    |> Phoenix.LiveView.Controller.live_render(EasyRetroWeb.BoardLive,
       id: "board-live",
       session: %{"key" => key}
     )
+  end
+
+  defp maybe_put_session(conn, key, content) do
+    session_content = get_session(conn, key)
+
+    if session_content do
+      conn
+    else
+      put_session(conn, key, content)
+    end
   end
 end

@@ -2,8 +2,9 @@ defmodule EasyRetroWeb.BoardLive do
   use EasyRetroWeb, :live_view
   alias EasyRetro.Core.Board
 
-  def mount(_params, %{"key" => key}, socket) do
+  def mount(_params, %{"key" => key, "user_token" => user_token}, socket) do
     EasyRetro.subscribe()
+    # TODO: Add the user_token to the board via a yet-to-be-created `add_voter` function
     {:ok, assign(socket, board: EasyRetro.lookup_board_by_key(key))}
   end
 
