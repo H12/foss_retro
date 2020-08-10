@@ -200,6 +200,48 @@ defmodule EasyRetro do
     |> notify_subscribers([:board, :updated])
   end
 
+  @doc """
+  Decrements the number of votes on a given card, and removes the record of that
+  vote for the relevant voter. If the voter has not voted on the target card, this
+  is just a no-op.
+
+  ## Parameters
+    - board: Board struct containing the target Card
+    - voter_id: A String that identifies a specific voter
+    - card_id: A non-negative integer corresponding to a particular card
+
+  ## Examples
+
+      iex> cat_board = "Animals"
+      ...> |> EasyRetro.build_board()
+      ...> |> EasyRetro.add_category("Cats")
+      ...> |> EasyRetro.add_card(0, "Maru")
+      ...> |> EasyRetro.add_card(0, "Garfield")
+      ...> |> EasyRetro.add_vote("ANewUser", 0)
+      iex> cat_board.cards[0]
+      %Card{id: 0, content: "Maru", votes: 1}
+      iex> cat_board.cards[1]
+      %Card{id: 1, content: "Garfield", votes: 0}
+      iex> cat_board.voters
+      %{"ANewUser" => [0]}
+      iex> cat_board = EasyRetro.remove_vote(cat_board, "ANewUser", 0)
+      iex> cat_board = EasyRetro.remove_vote(cat_board, "ANewUser", 1)
+      iex> cat_board.cards[0]
+      %Card{id: 0, content: "Maru", votes: 0}
+      iex> cat_board.cards[1]
+      %Card{id: 1, content: "Garfield", votes: 0}
+      iex> cat_board.voters
+      %{"ANewUser" => []}
+  """
+  @spec remove_vote(Board.t(), String.t(), non_neg_integer()) :: Board.t()
+  def remove_vote(board, voter_id, card_id) do
+    board
+    |> registry_name_for_board()
+    |> BoardSession.remove_vote(voter_id, card_id)
+    |> BoardManager.update_board()
+    |> notify_subscribers([:board, :updated])
+  end
+
   defp start_retro(board) do
     with {:ok, _} <- BoardSession.start_retro(board) do
       registry_name_for_board(board)

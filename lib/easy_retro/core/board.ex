@@ -39,9 +39,7 @@ defmodule EasyRetro.Core.Board do
   end
 
   def remove_vote(board, voter_id, card_id) do
-    board
-    |> update_in(card_path(card_id), &Card.remove_vote/1)
-    |> update_in(voter_path(voter_id), &List.delete(&1, card_id))
+    maybe_remove_vote(board, voter_id, card_id)
   end
 
   defp maybe_add_voter(board, voter_id) do
@@ -49,6 +47,16 @@ defmodule EasyRetro.Core.Board do
       board
     else
       put_in(board.voters[voter_id], [])
+    end
+  end
+
+  defp maybe_remove_vote(board, voter_id, card_id) do
+    if Enum.member?(board.voters[voter_id], card_id) do
+      board
+      |> update_in(card_path(card_id), &Card.remove_vote/1)
+      |> update_in(voter_path(voter_id), &List.delete(&1, card_id))
+    else
+      board
     end
   end
 
