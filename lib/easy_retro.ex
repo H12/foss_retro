@@ -161,6 +161,30 @@ defmodule EasyRetro do
   end
 
   @doc """
+  Adds a voter if they don't yet exist on the board, is a no-op otherwise.
+
+  ## Parameters
+    - board: Board struct to which to add the voter
+    - voter_id: A String that identifies a specific voter
+
+  ## Examples
+
+      iex> cat_board = EasyRetro.build_board("Animals")
+      iex> cat_board.voters
+      %{}
+      iex> EasyRetro.add_voter(cat_board, "ANewUser")
+      %{"ANewUser" => []}
+  """
+  @spec add_voter(Board.t(), String.t()) :: Board.t()
+  def add_voter(board, voter_id) do
+    board
+    |> registry_name_for_board()
+    |> BoardSession.add_voter(voter_id)
+    |> BoardManager.update_board()
+    |> notify_subscribers([:board, :updated])
+  end
+
+  @doc """
   Increments the number of votes on a given card, and records that vote for the
   relevant voter. If a voter with the provided identifier does not exist, a new
   voter will be added using that identifier.

@@ -8,7 +8,12 @@
       </form>
       <div id="category-<%= category_id %>" class="cards">
         <%= for card_id <- card_ids do %>
-          <%= live_component @socket, CardComponent, id: card_id, board: @board, category_id: category_id, card: @board.cards[card_id]%>
+          <%= live_component @socket, CardComponent,
+            id: card_id,
+            board: @board,
+            category_id: category_id,
+            card: @board.cards[card_id],
+            current_user: @current_user %>
         <% end %>
       </div>
     </div>

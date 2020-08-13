@@ -11,14 +11,46 @@ defmodule CardComponent do
         <span><%= @card.content %></span>
       </div>
       <div class="icons icons-bottom">
-        <i class="lni lni-bubble"></i>
+        <span class="votes"><%= @card.votes %></span>
+        <i phx-click="<%= click_event(@board, @current_user, @id) %>"
+           phx-target="<%= @myself %>"
+           class="lni lni-thumbs-up <%= icon_status(@board, @current_user, @id) %>"></i>
       </div>
     </div>
     """
+  end
+
+  def handle_event("add_vote", _value, socket) do
+    %{id: card_id, board: board, current_user: current_user} = socket.assigns
+    {:noreply, assign(socket, board: EasyRetro.add_vote(board, current_user, card_id))}
+  end
+
+  def handle_event("remove_vote", _value, socket) do
+    %{id: card_id, board: board, current_user: current_user} = socket.assigns
+    {:noreply, assign(socket, board: EasyRetro.remove_vote(board, current_user, card_id))}
   end
 
   def handle_event("remove_card", _value, socket) do
     %{id: card_id, board: board, category_id: category_id} = socket.assigns
     {:noreply, assign(socket, board: EasyRetro.remove_card(board, category_id, card_id))}
   end
+
+  defp click_event(board, current_user, card_id) do
+    if has_voted(board, current_user, card_id) do
+      "remove_vote"
+    else
+      "add_vote"
+    end
+  end
+
+  defp icon_status(board, current_user, card_id) do
+    if has_voted(board, current_user, card_id) do
+      "active"
+    else
+      ""
+    end
+  end
+
+  defp has_voted(board, current_user, card_id),
+    do: Enum.member?(board.voters[current_user], card_id)
 end

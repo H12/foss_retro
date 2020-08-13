@@ -56,6 +56,12 @@ defmodule EasyRetro.Boundary.BoardSession do
   end
 
   @impl GenServer
+  def handle_call({:add_voter, voter_id}, _from, board) do
+    new_board = Board.add_voter(board, voter_id)
+    {:reply, new_board, new_board}
+  end
+
+  @impl GenServer
   def handle_call({:add_vote, voter_id, card_id}, _from, board) do
     new_board = Board.add_vote(board, voter_id, card_id)
     {:reply, new_board, new_board}
@@ -82,6 +88,10 @@ defmodule EasyRetro.Boundary.BoardSession do
 
   def add_category(registry_name, name) do
     GenServer.call(via(registry_name), {:add_category, name})
+  end
+
+  def add_voter(registry_name, voter_id) do
+    GenServer.call(via(registry_name), {:add_voter, voter_id})
   end
 
   def add_vote(registry_name, voter_id, card_id) do

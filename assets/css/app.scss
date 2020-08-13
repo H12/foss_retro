@@ -250,10 +250,17 @@ header {
           &.icons-top { padding-top: 12px; }
           &.icons-bottom { padding-bottom: 12px; }
 
+          .votes {
+            font-size: 12px;
+            font-weight: bold;
+            padding: 0 4px;
+          }
+
           .lni {
             cursor: pointer;
 
             &:hover { color: #aaaaaa; }
+            &.active { color: #0069d9; }
           }
         }
       }

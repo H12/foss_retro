@@ -31,6 +31,10 @@ defmodule EasyRetro.Core.Board do
     put_in(board.categories[map_size(board.categories)], %{name: name, cards: []})
   end
 
+  def add_voter(board, voter_id) do
+    maybe_add_voter(board, voter_id)
+  end
+
   def add_vote(board, voter_id, card_id) do
     board
     |> update_in(card_path(card_id), &Card.add_vote/1)
