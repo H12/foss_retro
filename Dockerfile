@@ -1,15 +1,18 @@
-FROM elixir:1.10-alpine
-MAINTAINER Henry Firth
+FROM elixir:1.10
 
-RUN apk update
-RUN apk upgrade --no-cache
-RUN apk add nodejs=12.15.0-r1 nodejs-npm=12.15.0-r1
-RUN apk add inotify-tools=3.20.1-r1
-RUN mix local.rebar --force
-RUN mix local.hex --force
+RUN apt-get update
+RUN apt-get install --yes build-essential inotify-tools
 
-ENV APP_HOME /app
-RUN mkdir $APP_HOME
-WORKDIR $APP_HOME
+# Set working directory
+WORKDIR /app
 
-CMD ["mix", "phx.server"]
+# Install hex and rebar
+RUN mix local.hex --force &&\
+      mix local.rebar --force
+
+# Install nodejs
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - &&\
+      apt-get install --yes nodejs
+
+# Set the run command
+CMD ["./run.sh"]
