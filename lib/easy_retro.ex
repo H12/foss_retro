@@ -172,7 +172,8 @@ defmodule EasyRetro do
       iex> cat_board = EasyRetro.build_board("Animals")
       iex> cat_board.voters
       %{}
-      iex> EasyRetro.add_voter(cat_board, "ANewUser")
+      iex> cat_board = EasyRetro.add_voter(cat_board, "ANewUser")
+      iex> cat_board.voters
       %{"ANewUser" => []}
   """
   @spec add_voter(Board.t(), String.t()) :: Board.t()
