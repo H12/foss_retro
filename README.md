@@ -15,15 +15,39 @@ You can use `docker-compose` commands directly, but this project has a Makefile 
 - `docker`
 - `docker-compose`
 
+#### Optional Goodies
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop)
+
 #### Commands
 
-- Setup the project with `make` or `make setup`
-- Start Phoenix endpoint with `make start`
-- Stop Phoenix endpoint with `make stop`
-- Start a containerized console with `make console`
-- Auto-format your elixir code with `make format`
-- Update your elixir and javascript dependencies with `make update`
-- Run the tests with `make tests`
+##### `make` or `make setup`
+
+Does the necessary first-time docker setup
+
+##### `make start`
+
+Starts the project on port 4000
+
+##### `make stop`
+
+Stops the project
+
+##### `make console`
+
+Starts an interactive Elixir shell
+
+##### `make format`
+
+Auto-formats your Elixir code
+
+##### `make tests`
+
+Runs the project's test suite
+
+##### `make rebuild`
+
+Wipes away any installed dependencies and rebuilds project (this is the one that fixes cryptic OTP and node-sass errors)
 
 #### Dependencies
 

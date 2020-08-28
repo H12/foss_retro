@@ -5,8 +5,11 @@ services:
     ports:
       - "4000:4000"
     volumes:
-      - /app/_build
-      - /app/deps
-      - /app/priv/static
       - /app/assets/node_modules
-      - .:/app
+      - ./assets:/app/assets
+      - ./config:/app/config:ro
+      - ./lib:/app/lib:ro
+      - ./priv:/app/priv
+      - ./test:/app/test:ro
+      - ./mix.exs:/app/mix.exs:ro
+      - ./.formatter.exs:/app/.formatter.exs:ro
