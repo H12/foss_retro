@@ -47,7 +47,7 @@ Runs the project's test suite
 
 ##### `make rebuild`
 
-Wipes away any installed dependencies and rebuilds project (this is the one that fixes cryptic OTP and node-sass errors)
+Wipes away any installed dependencies or compiled artifacts and rebuilds the project (this is the one that fixes cryptic OTP and node-sass errors)
 
 #### Dependencies
 
@@ -57,7 +57,7 @@ If you find yourself updating these dependencies, be sure to update your docker 
 
 ### Natively
 
-Choose your preferred method of installation. This project's creator likes [`asdf`](https://asdf-vm.com/#/).
+To run this project natively, you'll need to have a few dependencies set up on your local machine. You can choose whatever method of installation you're most comfortable with; the [Phoenix Framework docs](https://hexdocs.pm/phoenix/installation.html#content) provide a good introduction, but you could also use a version manager like [`asdf`](https://asdf-vm.com/#/).
 
 #### Requirements
 
@@ -68,10 +68,25 @@ Choose your preferred method of installation. This project's creator likes [`asd
 
 #### Commands
 
-- Setup the project with `mix setup`
-- Start Phoenix endpoint with `mix phx.server`
-- Start an interactive console with `iex -S mix`
-- Run the tests with `MIX_ENV=test mix test`
+##### `mix setup`
+
+Installs the project's dependences
+
+##### `mix phx.server`
+
+Starts the Phoenix server
+
+##### `iex -S mix`
+
+Starts an interactive Elixir shell
+
+##### `mix format`
+
+Auto-formats you're Elixir code
+
+##### `MIX_ENV=test mix test`
+
+Runs the project's test suite
 
 ### Hooray!
 
