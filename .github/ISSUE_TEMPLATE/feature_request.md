@@ -14,4 +14,4 @@ A clear and concise description of what the problem is.
 Any additional constraints, or potential solutions to be considered.
 
 # Acceptance Criteria
-[ ] List of specific deliverables
+- [ ] List of specific deliverables
