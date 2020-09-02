@@ -38,8 +38,8 @@ defmodule EasyRetro.Boundary.BoardManager do
   end
 
   @impl GenServer
-  def handle_call({:remove_board, key}, _from, boards) do
-    {:reply, :ok, Map.delete(boards, key)}
+  def handle_call({:remove_board, board}, _from, boards) do
+    {:reply, board, Map.delete(boards, board.key)}
   end
 
   def build_board(manager \\ __MODULE__, title) do

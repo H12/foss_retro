@@ -1,18 +1,22 @@
 defmodule EasyRetro.Boundary.BoardSession do
   alias EasyRetro.Core.Board
+  alias EasyRetro.Boundary.BoardManager
   use GenServer
 
   def child_spec(board) do
     %{
       id: {__MODULE__, registry_name_for_board(board)},
-      start: {__MODULE__, :start_link, [board]}
+      start: {__MODULE__, :start_link, [board]},
+      restart: :transient
     }
   end
 
   @impl GenServer
   def init(board) do
-    {:ok, board}
+    {:ok, board, about_a_week()}
   end
+
+  defp about_a_week, do: 600_000_000
 
   def start_link(board) do
     GenServer.start_link(
@@ -38,44 +42,50 @@ defmodule EasyRetro.Boundary.BoardSession do
   end
 
   @impl GenServer
+  def handle_info(:timeout, board) do
+    BoardManager.remove_board(board)
+    {:stop, :normal, board}
+  end
+
+  @impl GenServer
   def handle_call({:add_card, category_key, content}, _from, board) do
     new_board = Board.add_card(board, category_key, content)
-    {:reply, new_board, new_board}
+    {:reply, new_board, new_board, about_a_week()}
   end
 
   @impl GenServer
   def handle_call({:remove_card, category_key, card_index}, _from, board) do
     new_board = Board.remove_card(board, category_key, card_index)
-    {:reply, new_board, new_board}
+    {:reply, new_board, new_board, about_a_week()}
   end
 
   @impl GenServer
   def handle_call({:add_category, name}, _from, board) do
     new_board = Board.add_category(board, name)
-    {:reply, new_board, new_board}
+    {:reply, new_board, new_board, about_a_week()}
   end
 
   @impl GenServer
   def handle_call({:add_voter, voter_id}, _from, board) do
     new_board = Board.add_voter(board, voter_id)
-    {:reply, new_board, new_board}
+    {:reply, new_board, new_board, about_a_week()}
   end
 
   @impl GenServer
   def handle_call({:add_vote, voter_id, card_id}, _from, board) do
     new_board = Board.add_vote(board, voter_id, card_id)
-    {:reply, new_board, new_board}
+    {:reply, new_board, new_board, about_a_week()}
   end
 
   @impl GenServer
   def handle_call({:remove_vote, voter_id, card_id}, _from, board) do
     new_board = Board.remove_vote(board, voter_id, card_id)
-    {:reply, new_board, new_board}
+    {:reply, new_board, new_board, about_a_week()}
   end
 
   @impl GenServer
   def handle_call({:view_board}, _from, board) do
-    {:reply, board, board}
+    {:reply, board, board, about_a_week()}
   end
 
   def add_card(registry_name, category_key, content) do
