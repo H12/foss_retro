@@ -4,7 +4,7 @@ defmodule EasyRetro.Boundary.BoardSession do
 
   def child_spec(board) do
     %{
-      id: {__MODULE__, {board.title, board.key}},
+      id: {__MODULE__, registry_name_for_board(board)},
       start: {__MODULE__, :start_link, [board]}
     }
   end
@@ -18,7 +18,7 @@ defmodule EasyRetro.Boundary.BoardSession do
     GenServer.start_link(
       __MODULE__,
       board,
-      name: via({board.title, board.key})
+      name: via(registry_name_for_board(board))
     )
   end
 
@@ -105,6 +105,8 @@ defmodule EasyRetro.Boundary.BoardSession do
   def view_board(registry_name) do
     GenServer.call(via(registry_name), {:view_board})
   end
+
+  def registry_name_for_board(board), do: {board.title, board.key}
 
   def active_sessions() do
     EasyRetro.Supervisor.BoardSession

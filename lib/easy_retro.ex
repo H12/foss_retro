@@ -95,7 +95,7 @@ defmodule EasyRetro do
   @spec add_card(Board.t(), non_neg_integer, String.t()) :: Board.t()
   def add_card(board, category_key, card_content) do
     board
-    |> registry_name_for_board()
+    |> BoardSession.registry_name_for_board()
     |> BoardSession.add_card(category_key, card_content)
     |> BoardManager.update_board()
     |> notify_subscribers([:board, :updated])
@@ -128,7 +128,7 @@ defmodule EasyRetro do
   @spec remove_card(Board.t(), non_neg_integer(), non_neg_integer()) :: Board.t()
   def remove_card(board, category_key, card_index) do
     board
-    |> registry_name_for_board()
+    |> BoardSession.registry_name_for_board()
     |> BoardSession.remove_card(category_key, card_index)
     |> BoardManager.update_board()
     |> notify_subscribers([:board, :updated])
@@ -154,7 +154,7 @@ defmodule EasyRetro do
   @spec add_category(Board.t(), String.t()) :: Board.t()
   def add_category(board, category_name) do
     board
-    |> registry_name_for_board()
+    |> BoardSession.registry_name_for_board()
     |> BoardSession.add_category(category_name)
     |> BoardManager.update_board()
     |> notify_subscribers([:board, :updated])
@@ -179,7 +179,7 @@ defmodule EasyRetro do
   @spec add_voter(Board.t(), String.t()) :: Board.t()
   def add_voter(board, voter_id) do
     board
-    |> registry_name_for_board()
+    |> BoardSession.registry_name_for_board()
     |> BoardSession.add_voter(voter_id)
     |> BoardManager.update_board()
     |> notify_subscribers([:board, :updated])
@@ -219,7 +219,7 @@ defmodule EasyRetro do
   @spec add_vote(Board.t(), String.t(), non_neg_integer()) :: Board.t()
   def add_vote(board, voter_id, card_id) do
     board
-    |> registry_name_for_board()
+    |> BoardSession.registry_name_for_board()
     |> BoardSession.add_vote(voter_id, card_id)
     |> BoardManager.update_board()
     |> notify_subscribers([:board, :updated])
@@ -261,7 +261,7 @@ defmodule EasyRetro do
   @spec remove_vote(Board.t(), String.t(), non_neg_integer()) :: Board.t()
   def remove_vote(board, voter_id, card_id) do
     board
-    |> registry_name_for_board()
+    |> BoardSession.registry_name_for_board()
     |> BoardSession.remove_vote(voter_id, card_id)
     |> BoardManager.update_board()
     |> notify_subscribers([:board, :updated])
@@ -269,7 +269,7 @@ defmodule EasyRetro do
 
   defp start_retro(board) do
     with {:ok, _} <- BoardSession.start_retro(board) do
-      registry_name_for_board(board)
+      BoardSession.registry_name_for_board(board)
     else
       error -> error
     end
@@ -286,14 +286,4 @@ defmodule EasyRetro do
   defp notify_subscribers(%Board{key: key}, event), do: notify_subscribers({:ok, key}, event)
 
   defp notify_subscribers({_title, key}, event), do: notify_subscribers({:ok, key}, event)
-
-  defp registry_name_for_board(board) do
-    registry_name = {board.title, board.key}
-
-    with {:via, _, _} = _ <- BoardSession.via(registry_name) do
-      registry_name
-    else
-      _error -> {:error, "registry_name is invalid"}
-    end
-  end
 end
