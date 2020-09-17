@@ -88,32 +88,32 @@ defmodule EasyRetro.Boundary.BoardSession do
     {:reply, board, board, about_a_week()}
   end
 
-  def add_card(registry_name, category_key, content) do
-    GenServer.call(via(registry_name), {:add_card, category_key, content})
+  def add_card(board, category_key, content) do
+    GenServer.call(via(registry_name_for_board(board)), {:add_card, category_key, content})
   end
 
-  def remove_card(registry_name, category_key, card_index) do
-    GenServer.call(via(registry_name), {:remove_card, category_key, card_index})
+  def remove_card(board, category_key, card_index) do
+    GenServer.call(via(registry_name_for_board(board)), {:remove_card, category_key, card_index})
   end
 
-  def add_category(registry_name, name) do
-    GenServer.call(via(registry_name), {:add_category, name})
+  def add_category(board, name) do
+    GenServer.call(via(registry_name_for_board(board)), {:add_category, name})
   end
 
-  def add_voter(registry_name, voter_id) do
-    GenServer.call(via(registry_name), {:add_voter, voter_id})
+  def add_voter(board, voter_id) do
+    GenServer.call(via(registry_name_for_board(board)), {:add_voter, voter_id})
   end
 
-  def add_vote(registry_name, voter_id, card_id) do
-    GenServer.call(via(registry_name), {:add_vote, voter_id, card_id})
+  def add_vote(board, voter_id, card_id) do
+    GenServer.call(via(registry_name_for_board(board)), {:add_vote, voter_id, card_id})
   end
 
-  def remove_vote(registry_name, voter_id, card_id) do
-    GenServer.call(via(registry_name), {:remove_vote, voter_id, card_id})
+  def remove_vote(board, voter_id, card_id) do
+    GenServer.call(via(registry_name_for_board(board)), {:remove_vote, voter_id, card_id})
   end
 
-  def view_board(registry_name) do
-    GenServer.call(via(registry_name), {:view_board})
+  def view_board(board) do
+    GenServer.call(via(registry_name_for_board(board)), {:view_board})
   end
 
   def registry_name_for_board(board), do: {board.title, board.key}
