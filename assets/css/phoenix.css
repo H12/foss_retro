@@ -24,6 +24,10 @@ header {
   height: 96px;
 }
 
+body > main {
+  height: calc(100% - 96px);
+}
+
 main {
   height: 100%;
   flex: 1;

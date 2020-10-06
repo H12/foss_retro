@@ -212,55 +212,60 @@ header {
       border-bottom: 1px solid #eaeaea;
     }
 
-    .cards {
-      border-right: 1px solid #eaeaea;
-      flex: 1;
-      padding: 0 24px;
-      overflow-y: auto;
+    .cards-container {
       display: flex;
-      flex-direction: column-reverse;
-      justify-content: flex-end;
+      flex: 1;
+      overflow-y: auto;
 
-      .card {
+      > .cards {
+        border-right: 1px solid #eaeaea;
+        flex: 1;
+        padding: 0 24px;
         display: flex;
-        flex-direction: column;
-        margin: 16px 0;
-        align-items: center;
-        min-height: 144px;
-        width: 100%;
-        border: 1px solid #dadada;
-        border-radius: 4px;
+        flex-direction: column-reverse;
+        justify-content: flex-end;
 
-        > div { padding: 0 12px; }
-
-        > .content {
+        .card {
           display: flex;
-          margin: 16px;
-          flex: 1;
+          flex-direction: column;
+          margin: 16px 0;
           align-items: center;
-          text-align: center;
-          font-size: 16px;
-        }
-
-        > .icons {
-          display: flex;
-          justify-content: flex-end;
+          min-height: 144px;
           width: 100%;
+          border: 1px solid #dadada;
+          border-radius: 4px;
 
-          &.icons-top { padding-top: 12px; }
-          &.icons-bottom { padding-bottom: 12px; }
+          > div { padding: 0 12px; }
 
-          .votes {
-            font-size: 12px;
-            font-weight: bold;
-            padding: 0 6px;
+          > .content {
+            display: flex;
+            margin: 16px;
+            flex: 1;
+            align-items: center;
+            text-align: center;
+            font-size: 16px;
           }
 
-          .lni {
-            cursor: pointer;
+          > .icons {
+            display: flex;
+            justify-content: flex-end;
+            width: 100%;
 
-            &:hover { color: #aaaaaa; }
-            &.active { color: #0069d9; }
+            &.icons-top { padding-top: 12px; }
+            &.icons-bottom { padding-bottom: 12px; }
+
+            .votes {
+              font-size: 12px;
+              font-weight: bold;
+              padding: 0 6px;
+            }
+
+            .lni {
+              cursor: pointer;
+
+              &:hover { color: #aaaaaa; }
+              &.active { color: #0069d9; }
+            }
           }
         }
       }
