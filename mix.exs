@@ -33,8 +33,8 @@ defmodule EasyRetro.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.5.4"},
-      {:phoenix_live_view, "~> 0.13.0"},
+      {:phoenix, "~> 1.5.5"},
+      {:phoenix_live_view, "~> 0.14.7"},
       {:floki, ">= 0.0.0", only: :test},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
