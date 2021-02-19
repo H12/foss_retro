@@ -12,13 +12,9 @@ defmodule EasyRetro.Core.Board do
 
   def as_markdown(%__MODULE__{title: title, categories: categories, cards: cards}) do
     ""
-    |> concat_title(title)
+    |> concat_line("#", title)
     |> concat_content(categories, cards)
     |> String.trim()
-  end
-
-  defp concat_title(string, title) do
-    string <> "# " <> title <> "\n"
   end
 
   defp concat_content(string, categories, cards) do
@@ -29,7 +25,7 @@ defmodule EasyRetro.Core.Board do
 
   defp concat_category(string, %{name: category_name, cards: card_ids}, cards) do
     string
-    |> (fn str -> str <> "## " <> category_name <> "\n" end).()
+    |> concat_line("##", category_name)
     |> concat_cards(card_ids, cards)
   end
 
@@ -42,8 +38,10 @@ defmodule EasyRetro.Core.Board do
   end
 
   defp concat_card(str, %Card{content: card_content, votes: vote_count}) do
-    str <> "### " <> "#{vote_count} - #{card_content}" <> "\n"
+    concat_line(str, "###", "#{vote_count} - #{card_content}")
   end
+
+  defp concat_line(str, prefix, content), do: str <> prefix <> " " <> content <> "\n"
 
   @spec add_card(map(), integer(), binary()) :: map()
   def add_card(board, category_id, content) do
