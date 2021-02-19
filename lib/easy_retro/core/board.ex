@@ -10,6 +10,41 @@ defmodule EasyRetro.Core.Board do
     }
   end
 
+  def as_markdown(%__MODULE__{title: title, categories: categories, cards: cards}) do
+    ""
+    |> concat_title(title)
+    |> concat_content(categories, cards)
+    |> String.trim()
+  end
+
+  defp concat_title(string, title) do
+    string <> "# " <> title <> "\n"
+  end
+
+  defp concat_content(string, categories, cards) do
+    categories
+    |> Map.values
+    |> Enum.reduce(string, &(concat_category(&2, &1, cards)))
+  end
+
+  defp concat_category(string, %{name: category_name, cards: card_ids}, cards) do
+    string
+    |> (fn str -> str <> "## " <> category_name <> "\n" end).()
+    |> concat_cards(card_ids, cards)
+  end
+
+  defp concat_cards(string, card_ids, cards) do
+    card_ids
+    |> Enum.map(fn card_id -> cards[card_id] end)
+    |> Enum.sort_by(fn %{votes: votes} -> votes end, :desc)
+    |> IO.inspect
+    |> Enum.reduce(string, &(concat_card(&2, &1)))
+  end
+
+  defp concat_card(str, %Card{content: card_content, votes: vote_count}) do
+    str <> "### " <> "#{vote_count} - #{card_content}" <> "\n"
+  end
+
   @spec add_card(map(), integer(), binary()) :: map()
   def add_card(board, category_id, content) do
     new_card_id = board.card_count
