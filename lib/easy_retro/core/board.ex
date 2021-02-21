@@ -89,7 +89,7 @@ defmodule EasyRetro.Core.Board do
     concat_line(str, "###", "#{vote_count} - #{card_content}")
   end
 
-  defp concat_line(str, prefix, content), do: str <> prefix <> " " <> content <> "\n"
+  defp concat_line(str, prefix, content), do: str <> prefix <> " " <> content <> "\n\n"
 
   @spec add_card(map(), integer(), binary()) :: map()
   def add_card(board, category_id, content) do
