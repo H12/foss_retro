@@ -35,6 +35,14 @@ defmodule EasyRetro do
     |> notify_subscribers([:board, :built])
   end
 
+  defp start_retro(board) do
+    with {:ok, _} <- BoardSession.start_retro(board) do
+      board
+    else
+      error -> error
+    end
+  end
+
   @doc """
   Returns a Map of all the Board structs that have been created.
 
@@ -259,14 +267,6 @@ defmodule EasyRetro do
     |> BoardSession.remove_vote(voter_id, card_id)
     |> BoardManager.update_board()
     |> notify_subscribers([:board, :updated])
-  end
-
-  defp start_retro(board) do
-    with {:ok, _} <- BoardSession.start_retro(board) do
-      board
-    else
-      error -> error
-    end
   end
 
   defp notify_subscribers({:ok, key}, event) do
