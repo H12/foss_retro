@@ -84,6 +84,7 @@ defmodule EasyRetro do
     - board: Board struct to which the new Card will be added
     - category_key: Integer identifying the target category of the new Card
     - card_content: String representing the content of the new Card
+    - creator_id: String representing the unique identifier of the new Card's creator
 
   ## Examples
 
@@ -94,16 +95,16 @@ defmodule EasyRetro do
       %{}
       iex> cat_board.categories
       %{0 => %{name: "Cats", cards: []}}
-      iex> cat_board = EasyRetro.add_card(cat_board, 0, "Maru")
+      iex> cat_board = EasyRetro.add_card(cat_board, 0, "Maru", "creator")
       iex> cat_board.cards
-      %{0 => %Card{id: 0, content: "Maru"}}
+      %{0 => %Card{id: 0, content: "Maru", creator: "creator"}}
       iex> cat_board.categories
       %{0 => %{name: "Cats", cards: [0]}}
   """
-  @spec add_card(Board.t(), non_neg_integer, String.t()) :: Board.t()
-  def add_card(board, category_key, card_content) do
+  @spec add_card(Board.t(), non_neg_integer, String.t(), String.t()) :: Board.t()
+  def add_card(board, category_key, card_content, creator_id) do
     board
-    |> BoardSession.add_card(category_key, card_content)
+    |> BoardSession.add_card(category_key, card_content, creator_id)
     |> BoardManager.update_board()
     |> notify_subscribers([:board, :updated])
   end
@@ -121,9 +122,9 @@ defmodule EasyRetro do
       iex> cat_board = "Animals"
       ...> |> EasyRetro.build_board()
       ...> |> EasyRetro.add_category("Cats")
-      ...> |> EasyRetro.add_card(0, "Maru")
+      ...> |> EasyRetro.add_card(0, "Maru", "creator")
       iex> cat_board.cards
-      %{0 => %Card{id: 0, content: "Maru"}}
+      %{0 => %Card{id: 0, content: "Maru", creator: "creator"}}
       iex> cat_board.categories
       %{0 => %{name: "Cats", cards: [0]}}
       iex> cat_board = EasyRetro.remove_card(cat_board, 0, 0)
@@ -204,19 +205,19 @@ defmodule EasyRetro do
       iex> cat_board = "Animals"
       ...> |> EasyRetro.build_board()
       ...> |> EasyRetro.add_category("Cats")
-      ...> |> EasyRetro.add_card(0, "Maru")
-      ...> |> EasyRetro.add_card(0, "Garfield")
+      ...> |> EasyRetro.add_card(0, "Maru", "creator")
+      ...> |> EasyRetro.add_card(0, "Garfield", "creator")
       iex> cat_board.cards[0]
-      %Card{id: 0, content: "Maru", votes: 0}
+      %Card{id: 0, content: "Maru", votes: 0, creator: "creator"}
       iex> cat_board.cards[1]
-      %Card{id: 1, content: "Garfield", votes: 0}
+      %Card{id: 1, content: "Garfield", votes: 0, creator: "creator"}
       iex> cat_board.voters
       %{}
       iex> cat_board = EasyRetro.add_vote(cat_board, "ANewUser", 0)
       iex> cat_board.cards[0]
-      %Card{id: 0, content: "Maru", votes: 1}
+      %Card{id: 0, content: "Maru", votes: 1, creator: "creator"}
       iex> cat_board.cards[1]
-      %Card{id: 1, content: "Garfield", votes: 0}
+      %Card{id: 1, content: "Garfield", votes: 0, creator: "creator"}
       iex> cat_board.voters
       %{"ANewUser" => [0]}
   """
@@ -243,21 +244,21 @@ defmodule EasyRetro do
       iex> cat_board = "Animals"
       ...> |> EasyRetro.build_board()
       ...> |> EasyRetro.add_category("Cats")
-      ...> |> EasyRetro.add_card(0, "Maru")
-      ...> |> EasyRetro.add_card(0, "Garfield")
+      ...> |> EasyRetro.add_card(0, "Maru", "creator")
+      ...> |> EasyRetro.add_card(0, "Garfield", "creator")
       ...> |> EasyRetro.add_vote("ANewUser", 0)
       iex> cat_board.cards[0]
-      %Card{id: 0, content: "Maru", votes: 1}
+      %Card{id: 0, content: "Maru", votes: 1, creator: "creator"}
       iex> cat_board.cards[1]
-      %Card{id: 1, content: "Garfield", votes: 0}
+      %Card{id: 1, content: "Garfield", votes: 0, creator: "creator"}
       iex> cat_board.voters
       %{"ANewUser" => [0]}
       iex> cat_board = EasyRetro.remove_vote(cat_board, "ANewUser", 0)
       iex> cat_board = EasyRetro.remove_vote(cat_board, "ANewUser", 1)
       iex> cat_board.cards[0]
-      %Card{id: 0, content: "Maru", votes: 0}
+      %Card{id: 0, content: "Maru", votes: 0, creator: "creator"}
       iex> cat_board.cards[1]
-      %Card{id: 1, content: "Garfield", votes: 0}
+      %Card{id: 1, content: "Garfield", votes: 0, creator: "creator"}
       iex> cat_board.voters
       %{"ANewUser" => []}
   """

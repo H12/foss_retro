@@ -91,12 +91,12 @@ defmodule EasyRetro.Core.Board do
 
   defp concat_line(str, prefix, content), do: str <> prefix <> " " <> content <> "\n\n"
 
-  @spec add_card(map(), integer(), binary()) :: map()
-  def add_card(board, category_id, content) do
+  @spec add_card(map(), integer(), binary(), binary()) :: map()
+  def add_card(board, category_id, content, creator_id) do
     new_card_id = board.card_count
 
     board
-    |> put_in(card_path(new_card_id), Card.new(new_card_id, content))
+    |> put_in(card_path(new_card_id), Card.new(new_card_id, content, creator_id))
     |> update_in(category_cards_path(category_id), &[new_card_id | &1])
     |> Map.put(:card_count, board.card_count + 1)
   end

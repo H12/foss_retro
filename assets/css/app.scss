@@ -267,6 +267,11 @@ header {
 
               &:hover { color: #aaaaaa; }
               &.active { color: #0069d9; }
+
+              &.lni-spacer {
+                cursor: none;
+                height: 16px;
+              }
             }
           }
         }

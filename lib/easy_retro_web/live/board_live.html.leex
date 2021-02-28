@@ -5,6 +5,7 @@
       <form class="add-card" phx-submit="add_card">
         <input type="text" name="content" phx-value-category="<%= category_id %>" placeholder="Add a card">
         <input type="hidden" name="category" value="<%= category_id %>">
+        <input type="hidden" name="creator" value="<%= @current_user %>">
       </form>
       <div id="category-<%= category_id %>" class="cards-container">
         <div class="cards">
