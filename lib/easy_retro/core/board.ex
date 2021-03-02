@@ -51,6 +51,8 @@ defmodule EasyRetro.Core.Board do
 
   defstruct [:key, :title, card_count: 0, cards: %{}, categories: %{}, voters: %{}]
 
+  @type t :: %__MODULE__{}
+
   def new(title) do
     %__MODULE__{
       key: generate_key(),
