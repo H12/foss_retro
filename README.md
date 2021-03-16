@@ -4,7 +4,7 @@ This is a simple, real-time retro board built with Phoenix LiveView and OTP.
 
 ## Getting Started
 
-This is a Phoenix LiveView project. If you've never worked with Elixir or Phoenix, the Elixir and Phoenix docs provide good instructions on how to install the necessary dependences:
+This is a Phoenix LiveView project. If you've never worked with Elixir or Phoenix, check out Elixir and Phoenix docs for instructions on how to install the necessary dependences:
 
 * https://elixir-lang.org/install.html
 * https://hexdocs.pm/phoenix/installation.html#content
@@ -30,11 +30,11 @@ Starts the Phoenix server
 
 #### `iex -S mix`
 
-Starts an interactive Elixir shell
+Starts an interactive Elixir shell and loads-in the project's code
 
 #### `mix format`
 
-Auto-formats you're Elixir code
+Auto-formats your Elixir code
 
 #### `MIX_ENV=test mix test`
 
