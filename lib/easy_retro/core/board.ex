@@ -6,8 +6,8 @@ defmodule EasyRetro.Core.Board do
 
       iex> Board.new("Kitty Board")
       ...> |> Board.add_category("Cats")
-      ...> |> Board.add_card(0, "Maru")
-      ...> |> Board.add_card(0, "Lil Bub")
+      ...> |> Board.add_card(0, "Maru", 0)
+      ...> |> Board.add_card(0, "Lil Bub", 0)
       ...> |> Board.add_voter(0)
       ...> |> Board.add_vote(0, 0)
       %EasyRetro.Core.Board{
