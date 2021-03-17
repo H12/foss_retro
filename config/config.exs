@@ -10,10 +10,10 @@ use Mix.Config
 # Configures the endpoint
 config :easy_retro, EasyRetroWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "OOuKqshCYFgIRoiE67thn+zYsnwJVgIdURkDuEWptGENANQvKy1NRwWvcv7XxGhw",
+  secret_key_base: "I0f5daG0pcC70aflucDWqlnLkUi8iCR4K/kOjG0NinOFgKeansvF1zMD+L3yZ9Ek",
   render_errors: [view: EasyRetroWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: EasyRetro.PubSub,
-  live_view: [signing_salt: "eZkRmQfI"]
+  live_view: [signing_salt: "DbN/kha0"]
 
 # Configures Elixir's Logger
 config :logger, :console,
