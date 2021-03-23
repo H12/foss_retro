@@ -6,7 +6,7 @@
 FROM elixir:1.11
 
 # Install node
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get install -y nodejs
 
 # prepare build dir
@@ -17,7 +17,14 @@ RUN mix local.hex --force && \
     mix local.rebar --force
 
 # set build ENV
+ARG host_url
+ENV HOST_URL=$host_url
+
+ARG secret
+ENV SECRET_KEY_BASE=$secret
+
 ENV MIX_ENV=prod
+
 
 # install mix dependencies
 COPY mix.exs mix.lock ./
@@ -37,4 +44,4 @@ RUN mix phx.digest
 COPY lib lib
 # uncomment COPY if rel/ exists
 # COPY rel rel
-RUN mix do compile, release
+RUN mix do compile, release app

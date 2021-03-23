@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -e
+
+# Build Docker image
+docker build \
+	--build-arg host_url=$HOST_URL \
+	--build-arg secret=$SECRET_KEY_BASE \
+	-t easy_retro .
+
+echo "Extracting release artifiact..."
+
+# Remove/create tmp directory
+rm -rf ./tmp/; mkdir ./tmp
+
+# Create tempory container, extract release tarball, remove container
+container_id=$(docker create easy_retro)
+docker cp $container_id:/app/_build/prod/app-0.1.0.tar.gz ./tmp
+docker rm $container_id
+
+echo "Release artifact successfully extracted."
