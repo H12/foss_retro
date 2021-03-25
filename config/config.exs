@@ -8,11 +8,11 @@
 use Mix.Config
 
 # Configures the endpoint
-config :easy_retro, EasyRetroWeb.Endpoint,
+config :foss_retro, FossRetroWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "I0f5daG0pcC70aflucDWqlnLkUi8iCR4K/kOjG0NinOFgKeansvF1zMD+L3yZ9Ek",
-  render_errors: [view: EasyRetroWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: EasyRetro.PubSub,
+  render_errors: [view: FossRetroWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: FossRetro.PubSub,
   live_view: [signing_salt: "DbN/kha0"]
 
 # Configures Elixir's Logger

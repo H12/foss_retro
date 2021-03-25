@@ -1,4 +1,4 @@
-# EasyRetro
+# FossRetro
 
 This is a simple, real-time retro board built with Phoenix LiveView and OTP.
 

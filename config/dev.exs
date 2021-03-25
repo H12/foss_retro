@@ -6,7 +6,7 @@ use Mix.Config
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with webpack to recompile .js and .css sources.
-config :easy_retro, EasyRetroWeb.Endpoint,
+config :foss_retro, FossRetroWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -46,13 +46,13 @@ config :easy_retro, EasyRetroWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :easy_retro, EasyRetroWeb.Endpoint,
+config :foss_retro, FossRetroWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/easy_retro_web/(live|views)/.*(ex)$",
-      ~r"lib/easy_retro_web/templates/.*(eex)$"
+      ~r"lib/foss_retro_web/(live|views)/.*(ex)$",
+      ~r"lib/foss_retro_web/templates/.*(eex)$"
     ]
   ]
 

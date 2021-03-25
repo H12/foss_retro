@@ -1,4 +1,4 @@
-defmodule EasyRetroWeb.ConnCase do
+defmodule FossRetroWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -11,7 +11,7 @@ defmodule EasyRetroWeb.ConnCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use EasyRetroWeb.ConnCase, async: true`, although
+  by setting `use FossRetroWeb.ConnCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -22,12 +22,12 @@ defmodule EasyRetroWeb.ConnCase do
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
-      import EasyRetroWeb.ConnCase
+      import FossRetroWeb.ConnCase
 
-      alias EasyRetroWeb.Router.Helpers, as: Routes
+      alias FossRetroWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint EasyRetroWeb.Endpoint
+      @endpoint FossRetroWeb.Endpoint
     end
   end
 

@@ -11,7 +11,7 @@ secret_key_base =
     You can generate one by calling: mix phx.gen.secret
     """
 
-config :easy_retro, EasyRetroWeb.Endpoint,
+config :foss_retro, FossRetroWeb.Endpoint,
   http: [
     port: String.to_integer(System.get_env("PORT") || "4000"),
     transport_options: [socket_opts: [:inet6]]
@@ -23,7 +23,7 @@ config :easy_retro, EasyRetroWeb.Endpoint,
 # If you are doing OTP releases, you need to instruct Phoenix
 # to start each relevant endpoint:
 #
-config :easy_retro, EasyRetroWeb.Endpoint, server: true
+config :foss_retro, FossRetroWeb.Endpoint, server: true
 #
 # Then you can assemble a release by calling `mix release`.
 # See `mix help release` for more information.

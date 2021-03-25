@@ -6,7 +6,7 @@ set -e
 docker build \
 	--build-arg host_url=$HOST_URL \
 	--build-arg secret=$SECRET_KEY_BASE \
-	-t easy_retro .
+	-t foss_retro .
 
 echo "Extracting release artifiact..."
 
@@ -14,7 +14,7 @@ echo "Extracting release artifiact..."
 rm -rf ./tmp/; mkdir ./tmp
 
 # Create tempory container, extract release tarball, remove container
-container_id=$(docker create easy_retro)
+container_id=$(docker create foss_retro)
 docker cp $container_id:/app/_build/prod/app-0.1.0.tar.gz ./tmp
 docker rm $container_id
 
