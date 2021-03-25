@@ -17,7 +17,10 @@ host_url =
 
 config :easy_retro, EasyRetroWeb.Endpoint,
   url: [host: host_url, port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  check_origin: [
+    "//*.amazonaws.com"
+  ]
 
 # Do not print debug messages in production
 config :logger, level: :info
