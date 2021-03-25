@@ -1,6 +1,6 @@
-# FossRetro
+# FOSS Retro
 
-This is a simple, real-time retro board built with Phoenix LiveView and OTP.
+This is a simple, real-time agile retrospective board built with Phoenix LiveView and OTP.
 
 ## Getting Started
 
