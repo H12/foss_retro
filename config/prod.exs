@@ -19,7 +19,11 @@ config :foss_retro, FossRetroWeb.Endpoint,
   url: [host: host_url, port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json",
   check_origin: [
-    "//*.amazonaws.com"
+    "//*.amazonaws.com",
+    "http://fossretro.com",
+    "http://www.fossretro.com",
+    "https://fossretro.com",
+    "https://www.fossretro.com",
   ]
 
 # Do not print debug messages in production
