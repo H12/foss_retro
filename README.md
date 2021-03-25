@@ -13,9 +13,9 @@ If you use `asdf` for version management, you can also install Elixir via the [o
 
 ### Recommended Versions
 
-- Erlang `23.2.4`
+- Erlang `23.2.7`
 - Elixir `1.11.3`
-- NodeJS `12.x.x`
+- NodeJS `14.x.x`
 - Phoenix `1.5.x`
 
 ### Commands
