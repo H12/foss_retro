@@ -1,4 +1,7 @@
 defmodule FossRetro.Core.Card do
+  @moduledoc """
+  Card contains the core functionality for creating and modifying Card structs.
+  """
   defstruct [:id, :content, :creator, comments: [], votes: 0]
 
   @doc """
