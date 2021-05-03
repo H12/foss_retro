@@ -83,7 +83,6 @@ defmodule FossRetro.Core.Board do
     card_ids
     |> Enum.map(fn card_id -> cards[card_id] end)
     |> Enum.sort_by(fn %{votes: votes} -> votes end, :desc)
-    |> IO.inspect()
     |> Enum.reduce(string, &concat_card(&2, &1))
   end
 
