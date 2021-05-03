@@ -19,9 +19,9 @@ defmodule FossRetroWeb.BoardController do
   end
 
   def join(%{method: "POST"} = conn, %{"key" => key}) do
-    with %{key: key} <- FossRetro.lookup_board_by_key(key) do
-      redirect(conn, to: "/board/" <> key)
-    else
+    case FossRetro.lookup_board_by_key(key) do
+      %{key: key} ->
+        redirect(conn, to: "/board/" <> key)
       _ ->
         conn
         |> put_flash(:error, "No board exists with the key '#{key}'")

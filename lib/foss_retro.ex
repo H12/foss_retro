@@ -36,9 +36,8 @@ defmodule FossRetro do
   end
 
   defp start_retro(board) do
-    with {:ok, _} <- BoardSession.start_retro(board) do
-      board
-    else
+    case BoardSession.start_retro(board) do
+      {:ok, _} -> board
       error -> error
     end
   end
@@ -72,7 +71,7 @@ defmodule FossRetro do
       iex> new_board == found_board
       true
   """
-  @spec lookup_board_by_key(String.t()) :: Board.t()
+  @spec lookup_board_by_key(String.t()) :: Board.t() | nil
   def lookup_board_by_key(key) do
     BoardManager.lookup_board_by_key(key)
   end
