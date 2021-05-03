@@ -4,6 +4,26 @@ defmodule FossRetroWeb.ListLive do
   """
   use FossRetroWeb, :live_view
 
+  def render(assigns) do
+    ~L"""
+    <section class="hero">
+      <h1>Wow, look at all those retro boards!</h1>
+        <table>
+          <tr>
+            <th>ID Key</th>
+            <th>Board Title</th>
+          </tr>
+          <%= for {key, board} <- @boards do %>
+            <tr>
+              <td><%= key %></td>
+              <td><%= board.title %></td>
+            </tr>
+          <% end %>
+      </table>
+    </section>
+    """
+  end
+
   def mount(_params, _session, socket) do
     FossRetro.subscribe()
     {:ok, assign(socket, boards: FossRetro.list_boards())}
