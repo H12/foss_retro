@@ -1,4 +1,7 @@
 defmodule FossRetroWeb.ListLive do
+  @moduledoc """
+  ListLive handles the view logic for rendering a real-time list of in-use Boards.
+  """
   use FossRetroWeb, :live_view
 
   def mount(_params, _session, socket) do
