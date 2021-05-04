@@ -5,8 +5,11 @@ defmodule FossRetroWeb do
 
   This can be used in your application as:
 
+  ```
       use FossRetroWeb, :controller
       use FossRetroWeb, :view
+
+  ```
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused

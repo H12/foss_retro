@@ -2,8 +2,8 @@ defmodule FossRetro.Boundary.BoardSession do
   @moduledoc """
   BoardSession is an OTP GenServer that is started via a DynamicSupervisor.
 
-  This module contains the logic for updating the internal state of each BoardSession
-  process in response to different messages.
+  This module contains the logic for updating the internal state of each
+  BoardSession process in response to different messages.
   """
   alias FossRetro.Core.Board
   alias FossRetro.Boundary.BoardManager

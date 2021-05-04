@@ -1,6 +1,7 @@
 defmodule FossRetro.Core.Board do
   @moduledoc """
-  Functions for creating and interacting with FossRetro's primary data structure: The Board.
+  Functions for creating and interacting with FossRetro's primary data
+  structure: The Board.
 
   ## Example
 
@@ -13,8 +14,18 @@ defmodule FossRetro.Core.Board do
       %FossRetro.Core.Board{
         card_count: 2,
         cards: %{
-          0 => %FossRetro.Core.Card{comments: [], content: "Maru", id: 0, votes: 1},
-          1 => %FossRetro.Core.Card{comments: [], content: "Lil Bub", id: 1, votes: 0}
+          0 => %FossRetro.Core.Card{
+            comments: [],
+            content: "Maru",
+            id: 0,
+            votes: 1
+          },
+          1 => %FossRetro.Core.Card{
+            comments: [],
+            content: "Lil Bub",
+            id: 1,
+            votes: 0
+          }
         },
         categories: %{0 => %{cards: [1, 0], name: "Cats"}},
         key: "ABC12",
@@ -22,26 +33,30 @@ defmodule FossRetro.Core.Board do
         voters: %{0 => [0]}
       }
 
-  In the example above, we created a Board with the title "Kitty Board", a category for "Cats". We
-  then added two Cards to that category, one with the content "Maru" and another with "Lil Bub".
-  Subsequently, we added a voter with an id of `0`, and then that voter added a vote to the "Maru"
-  card by referencing its index.
+  In the example above, we created a Board with the title "Kitty Board", a
+  category for "Cats". We then added two Cards to that category, one with the
+  content "Maru" and another with "Lil Bub". Subsequently, we added a voter
+  with an id of `0`, and then that voter added a vote to the "Maru" card by
+  referencing its index.
 
-  Categories and Cards are zero-indexed automatically, but voters must be supplied with a unique
-  identifier. This allows for voter/user uniqueness to be managed client-side with things like
-  browser session tokens.
+  Categories and Cards are zero-indexed automatically, but voters must be
+  supplied with a unique identifier. This allows for voter/user uniqueness
+  to be managed client-side with things like browser session tokens.
 
-  The methodology for indexing Cards and categories differs slightly between the two. Cards are
-  indexed off of the `card_count` parameter on the Board. The `card_count` is only ever incremented,
-  which ensures a Card id always refers to the same Card, which is important since those ids are
-  referenced by both the category and voter parameters. Since categories aren't referenced by anything
-  within the Board struct, their ids can be indexed off of the dynamic `map_size/1` of the `categories`
-  Map without adding any undue complications.
+  The methodology for indexing Cards and categories differs slightly between
+  the two. Cards are indexed off of the `card_count` parameter on the Board.
+  The `card_count` is only ever incremented, which ensures a Card id always
+  refers to the same Card, which is important since those ids are referenced
+  by both the category and voter parameters. Since categories aren't referenced
+  by anything within the Board struct, their ids can be indexed off of the
+  dynamic `map_size/1` of the `categories` Map without adding any undue
+  complications.
 
-  Categories are represented as Maps, containing a List of Card ids in addition to its title. Votes
-  are tracked via a "voters" Map, containing entries that each use the unique voter identifier (provided
-  via the `Board.add_voter/2` method) as a key, with the corresponding value being a List of Card ids
-  for which the voter has voted.
+  Categories are represented as Maps, containing a List of Card ids in addition
+  to its title. Votes are tracked via a "voters" Map, containing entries that
+  each use the unique voter identifier (provided via the `Board.add_voter/2` method)
+  as a key, with the corresponding value being a List of Card ids for which the
+  voter has voted.
 
   __See the FossRetro.Core.Card module for more info on how Cards are structured.__
 

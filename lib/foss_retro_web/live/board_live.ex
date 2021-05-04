@@ -2,10 +2,10 @@ defmodule FossRetroWeb.BoardLive do
   @moduledoc """
   BoardLive contains both the view logic for the the LiveView that facilitates
   UI interraction with FossRetro Boards. This module is responsible for handling
-  user interractions with a particular Board and dispatching appropriate events to
-  the FossRetro module.
+  user interractions with a particular Board and dispatching appropriate events
+  to the FossRetro module.
 
-  See the corresponding `.html.leex` file for this module's corresponding html markup.
+  See the `board_live.html.leex` file for this module's corresponding html markup.
 
   ## Instance Variables
   - board: The Board struct containing relevant Board data

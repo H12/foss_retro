@@ -1,9 +1,9 @@
 defmodule FossRetroWeb.CardComponent do
   @moduledoc """
-  CardComponent contains both the markup and view logic for the FossRetro "Cards" (the
-  things meant to represent sticky-notes on a physical retrospective board). This module
-  handles user interractions with a specific card, and dispatches appropriate events to
-  the FossRetro module.
+  CardComponent contains both the markup and view logic for the FossRetro
+  "Cards" (the things meant to represent sticky-notes on a physical retro
+  board). This module handles user interractions with a specific card, and
+  dispatches appropriate events to the FossRetro module.
 
   ## Instance Variables
   - id: The unique identifier of the CardComponent
