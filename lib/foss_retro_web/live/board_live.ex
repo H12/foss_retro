@@ -12,7 +12,7 @@ defmodule FossRetroWeb.BoardLive do
   - current_user: The unique identifier of the current session user
   """
   use FossRetroWeb, :live_view
-  alias FossRetro.Core.Board
+  alias FossRetroWeb.CardComponent
 
   def mount(_params, %{"key" => key, "user_token" => user_token}, socket) do
     FossRetro.subscribe()
@@ -50,7 +50,7 @@ defmodule FossRetroWeb.BoardLive do
   end
 
   defp maybe_assign_board(socket, board) do
-    with %Board{key: key} <- socket.assigns.board,
+    with %{key: key} <- socket.assigns.board,
          true <- board.key == key do
       assign(socket, board: board)
     else

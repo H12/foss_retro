@@ -1,4 +1,4 @@
-defmodule CardComponent do
+defmodule FossRetroWeb.CardComponent do
   @moduledoc """
   CardComponent contains both the markup and view logic for the FossRetro "Cards" (the
   things meant to represent sticky-notes on a physical retrospective board). This module

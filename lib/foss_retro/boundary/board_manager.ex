@@ -1,11 +1,11 @@
 defmodule FossRetro.Boundary.BoardManager do
+  # TODO: Explore making this an :ets table
+
   @moduledoc """
   BoardManager is an OTP GenServer that maintains the state of every active FossRetro board.
 
   It's effectively an in-memory key value store, where the key is a Board struct's key, and the
   value is the corresponding Board struct.
-
-  # TODO: Explore making this an :ets table?
   """
   alias FossRetro.Core.Board
   use GenServer

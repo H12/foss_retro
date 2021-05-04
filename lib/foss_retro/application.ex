@@ -3,6 +3,8 @@ defmodule FossRetro.Application do
   # for more information on OTP Applications
   @moduledoc false
 
+  use Boundary, top_level?: true, deps: [FossRetro, FossRetroWeb]
+
   use Application
 
   def start(_type, _args) do
