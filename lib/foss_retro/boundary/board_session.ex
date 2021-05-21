@@ -95,7 +95,10 @@ defmodule FossRetro.Boundary.BoardSession do
   end
 
   def add_card(board, category_key, content, creator_id) do
-    GenServer.call(via(registry_name_for_board(board)), {:add_card, category_key, content, creator_id})
+    GenServer.call(
+      via(registry_name_for_board(board)),
+      {:add_card, category_key, content, creator_id}
+    )
   end
 
   def remove_card(board, category_key, card_index) do

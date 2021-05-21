@@ -43,9 +43,12 @@ defmodule FossRetroWeb.BoardLive do
     {:noreply, assign(socket, board: FossRetro.add_category(board, name))}
   end
 
-  def handle_event("add_card", %{"category" => category_id, "content" => content, "creator" => creator_id}, socket) do
+  def handle_event("add_card", card_attrs, socket) do
+    %{"category" => category_id, "content" => content, "creator" => creator_id} = card_attrs
+
     board = socket.assigns.board
     new_board = FossRetro.add_card(board, String.to_integer(category_id), content, creator_id)
+
     {:noreply, assign(socket, board: new_board)}
   end
 

@@ -23,7 +23,7 @@ config :foss_retro, FossRetroWeb.Endpoint,
     "http://fossretro.com",
     "http://www.fossretro.com",
     "https://fossretro.com",
-    "https://www.fossretro.com",
+    "https://www.fossretro.com"
   ]
 
 # Do not print debug messages in production

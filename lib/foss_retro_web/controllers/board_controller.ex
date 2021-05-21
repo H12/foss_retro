@@ -22,6 +22,7 @@ defmodule FossRetroWeb.BoardController do
     case FossRetro.lookup_board_by_key(key) do
       %{key: key} ->
         redirect(conn, to: "/board/" <> key)
+
       _ ->
         conn
         |> put_flash(:error, "No board exists with the key '#{key}'")

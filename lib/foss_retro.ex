@@ -85,7 +85,7 @@ defmodule FossRetro do
     - board: Board struct to which the new Card will be added
     - category_key: Integer identifying the target category of the new Card
     - card_content: String representing the content of the new Card
-    - creator_id: String representing the unique identifier of the new Card's creator
+    - creator_id: String representing the identifier of the new Card's creator
 
   ## Examples
 
@@ -111,7 +111,8 @@ defmodule FossRetro do
   end
 
   @doc """
-  Removes a Card from the provided Board and notifies PubSub subscribers of the change.
+  Removes a Card from the provided Board and notifies PubSub subscribers of the
+  change.
 
   ## Parameters
     - board: Board struct from which the intended Card will be removed
@@ -143,7 +144,8 @@ defmodule FossRetro do
   end
 
   @doc """
-  Adds a category to the provided board and notifies PubSub subscribers of the change.
+  Adds a category to the provided board and notifies PubSub subscribers of the
+  change.
 
   ## Parameters
     - board: Board struct from which the intended Card will be removed
@@ -231,9 +233,9 @@ defmodule FossRetro do
   end
 
   @doc """
-  Decrements the number of votes on a given card, and removes the record of that
-  vote for the relevant voter. If the voter has not voted on the target card, this
-  is just a no-op.
+  Decrements the number of votes on a given card, and removes the record of
+  that vote for the relevant voter. If the voter has not voted on the target
+  card, this is just a no-op.
 
   ## Parameters
     - board: Board struct containing the target Card
