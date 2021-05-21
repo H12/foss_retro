@@ -35,3 +35,6 @@ npm-debug.log
 
 # Temporary files
 /tmp/
+
+# MacOS nonsense
+.DS_Store
