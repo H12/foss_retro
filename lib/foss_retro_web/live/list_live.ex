@@ -12,11 +12,13 @@ defmodule FossRetroWeb.ListLive do
           <tr>
             <th>ID Key</th>
             <th>Board Title</th>
+            <th>Card Count</th>
           </tr>
           <%= for {key, board} <- @boards do %>
             <tr>
               <td><%= key %></td>
               <td><%= board.title %></td>
+              <td><%= map_size(board.cards) %></td>
             </tr>
           <% end %>
       </table>
