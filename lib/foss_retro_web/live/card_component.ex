@@ -17,11 +17,11 @@ defmodule FossRetroWeb.CardComponent do
     ~L"""
     <div id="card-<%= @id %>" class="card">
       <div class="icons icons-top">
-      <%= if @current_user == @card.creator do %>
-        <i phx-click="remove_card" phx-target="<%= @myself %>" class="lni lni-close"></i>
-      <% else %>
-        <i class="lni lni-spacer"></i>
-      <% end %>
+        <%= if @current_user == @card.creator do %>
+          <i phx-click="remove_card" phx-target="<%= @myself %>" class="lni lni-close"></i>
+        <% else %>
+          <i class="lni lni-spacer"></i>
+        <% end %>
       </div>
       <div class="content">
         <span><%= @card.content %></span>
