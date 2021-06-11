@@ -1,8 +1,8 @@
 defmodule FossRetroWeb.BoardLive do
   @moduledoc """
-  BoardLive contains both the view logic for the the LiveView that facilitates
-  UI interraction with FossRetro Boards. This module is responsible for handling
-  user interractions with a particular Board and dispatching appropriate events
+  BoardLive contains both the view logic for the LiveView that facilitates UI
+  interaction with FossRetro Boards. This module is responsible for handling
+  user interactions with a particular Board and dispatching appropriate events
   to the FossRetro module.
 
   See the `board_live.html.leex` file for this module's corresponding html markup.
