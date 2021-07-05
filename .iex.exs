@@ -16,8 +16,8 @@ defmodule Helpers do
 end
 
 # Module Aliases
-alias EasyRetro.Core.Board
-alias EasyRetro.Core.Card
+alias FossRetro.Core.Board
+alias FossRetro.Core.Card
 
 # Helpful variable setup
 sample_board =
