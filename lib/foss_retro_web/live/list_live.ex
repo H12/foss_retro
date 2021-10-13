@@ -7,7 +7,7 @@ defmodule FossRetroWeb.ListLive do
   def render(assigns) do
     ~L"""
     <section class="hero">
-      <h1>Wow, look at all those retro boards!</h1>
+      <h1>Wow, look at all them retro boards!</h1>
         <table>
           <tr>
             <th>ID Key</th>
