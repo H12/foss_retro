@@ -10,7 +10,7 @@ defmodule FossRetro.MixProject do
       compilers: [:boundary, :phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       releases: [
-        app: [
+        foss_retro: [
           steps: [:assemble, :tar]
         ]
       ],
