@@ -2,7 +2,7 @@ defmodule FossRetroWeb.BoardView do
   use FossRetroWeb, :view
 
   def render("index.html", assigns) do
-    ~E"""
+    ~H"""
     <section class="hero">
       <h1>Welcome to FossRetro!</h1>
       <p><i>Easy retrospectives for agile development</i></p>
@@ -15,7 +15,7 @@ defmodule FossRetroWeb.BoardView do
   end
 
   def render("start.html", assigns) do
-    ~E"""
+    ~H"""
     <section class="hero">
       <h1>Start that Retro!</h1>
       <%= form_for @conn, Routes.board_path(@conn, :start), fn f -> %>
@@ -27,7 +27,7 @@ defmodule FossRetroWeb.BoardView do
   end
 
   def render("join.html", assigns) do
-    ~E"""
+    ~H"""
     <section class="hero">
       <h1>Let's retro!</h1>
       <%= form_for @conn, Routes.board_path(@conn, :join), fn f -> %>

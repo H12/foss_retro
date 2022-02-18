@@ -1,22 +1,30 @@
-# fly.toml file generated for foss-retro on 2021-10-12T20:44:53-05:00
+# fly.toml file generated for little-meadow-22 on 2022-02-18T09:31:39-06:00
 
 app = "foss-retro"
 
 kill_signal = "SIGTERM"
 kill_timeout = 5
+processes = []
 
 [env]
+  PHX_HOST = "foss-retro.fly.dev"
+  PORT = "8080"
 
-[deploy]
-  release_command = "/app/bin/foss_retro"
+[experimental]
+  allowed_public_ports = []
+  auto_rollback = true
 
 [[services]]
-  internal_port = 4000
+  http_checks = []
+  internal_port = 8080
+  processes = ["app"]
   protocol = "tcp"
+  script_checks = []
 
   [services.concurrency]
     hard_limit = 25
     soft_limit = 20
+    type = "connections"
 
   [[services.ports]]
     handlers = ["http"]
@@ -27,7 +35,7 @@ kill_timeout = 5
     port = 443
 
   [[services.tcp_checks]]
-    grace_period = "30s"
+    grace_period = "1s"
     interval = "15s"
-    restart_limit = 6
+    restart_limit = 0
     timeout = "2s"

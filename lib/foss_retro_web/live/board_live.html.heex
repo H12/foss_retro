@@ -3,14 +3,14 @@
     <div class="category">
       <div class="name"><%= category_name %></div>
       <form class="add-card" phx-submit="add_card">
-        <input type="text" name="content" phx-value-category="<%= category_id %>" placeholder="Add a card">
-        <input type="hidden" name="category" value="<%= category_id %>">
-        <input type="hidden" name="creator" value="<%= @current_user %>">
+        <input type="text" name="content" phx-value-category={ category_id } placeholder="Add a card">
+        <input type="hidden" name="category" value={ category_id }>
+        <input type="hidden" name="creator" value={ @current_user }>
       </form>
-      <div id="category-<%= category_id %>" class="cards-container">
+      <div id={"category-" <> to_string(category_id) } class="cards-container">
         <div class="cards">
           <%= for card_id <- card_ids do %>
-            <%= live_component @socket, CardComponent,
+            <%= live_component CardComponent,
               id: card_id,
               board: @board,
               category_id: category_id,

@@ -1,0 +1,17 @@
+<section class="hero">
+  <h1>Wow, look at all them retro boards!</h1>
+  <table>
+    <tr>
+      <th>ID Key</th>
+      <th>Board Title</th>
+      <th>Card Count</th>
+    </tr>
+    <%= for {key, board} <- @boards do %>
+      <tr>
+        <td><%= key %></td>
+        <td><%= board.title %></td>
+        <td><%= map_size(board.cards) %></td>
+      </tr>
+    <% end %>
+  </table>
+</section>
