@@ -1,0 +1,8 @@
+<Shared.hero title={@title} subtitle={@subtitle}>
+  <.form let={f} for={:board} phx-submit="create_board" class="">
+    <%= text_input(f, :title, class: "grow rounded-md border-slate-400") %>
+    <%= error_tag(f, :title) %>
+
+    <%= submit("Save", class: "w-24 bg-purple-600 text-purple-100 rounded-md") %>
+  </.form>
+</Shared.hero>

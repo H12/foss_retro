@@ -22,7 +22,8 @@ defmodule FossRetroWeb.BoardLive do
       |> FossRetro.lookup_board_by_key()
       |> FossRetro.add_voter(user_token)
 
-    {:ok, assign(socket, board: board, current_user: user_token)}
+    {:ok,
+     assign(socket, board: board, cols: map_size(board.categories), current_user: user_token)}
   end
 
   def mount(_params, _session, socket) do
@@ -44,6 +45,9 @@ defmodule FossRetroWeb.BoardLive do
   end
 
   def handle_event("add_card", card_attrs, socket) do
+    IO.inspect card_attrs
+    IO.inspect socket
+
     %{"category" => category_id, "content" => content, "creator" => creator_id} = card_attrs
 
     board = socket.assigns.board

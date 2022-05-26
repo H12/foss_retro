@@ -1,18 +1,21 @@
-<div id={ "card-" <> to_string(@id) } class="card">
-  <div class="icons icons-top">
+<div id={"card-" <> to_string(@id)} class="flex flex-col border rounded-lg p-1 items-end">
+  <div>
     <%= if @current_user == @card.creator do %>
-      <i phx-click="remove_card" phx-target={ @myself } class="lni lni-close"></i>
+      <i phx-click="remove_card" phx-target={@myself} class="lni lni-close cursor-pointer"></i>
     <% else %>
-      <i class="lni lni-spacer"></i>
+      <i class="lni lni-spacer cursor-pointer"></i>
     <% end %>
   </div>
-  <div class="content">
+  <div class="self-center">
     <span><%= @card.content %></span>
   </div>
-  <div class="icons icons-bottom">
-    <span class="votes"><%= @card.votes %></span>
-    <i phx-click={ click_event(@board, @current_user, @id) }
-       phx-target={ @myself }
-       class={"lni lni-thumbs-up " <> icon_status(@board, @current_user, @id) }></i>
+  <div>
+    <span><%= @card.votes %></span>
+    <i
+      phx-click={click_event(@board, @current_user, @id)}
+      phx-target={@myself}
+      class={"lni lni-thumbs-up cursor-pointer " <> icon_status(@board, @current_user, @id)}
+    >
+    </i>
   </div>
 </div>

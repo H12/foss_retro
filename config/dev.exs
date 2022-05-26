@@ -7,7 +7,8 @@ config :foss_retro, FossRetroWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "IidnNKkyTh/b1IPbFx7hxL9bRAutd+z6WA77S0UgQyrMoYq4Vy8HefHrO3l7pWpo",
   watchers: [
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
   ]
 
 config :foss_retro, FossRetroWeb.Endpoint,

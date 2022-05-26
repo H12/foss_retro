@@ -1,27 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
   <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%= csrf_meta_tag() %>
-    <%= live_title_tag assigns[:page_title] || "FossRetro", suffix: " · Phoenix Framework" %>
-    <link phx-track-static rel="stylesheet" href={ Routes.static_path(@conn, "/assets/app.css") }/>
-    <link rel="stylesheet" href="https://cdn.lineicons.com/2.0/LineIcons.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand"/>
-    <script defer phx-track-static type="text/javascript" src={ Routes.static_path(@conn, "/assets/app.js") }></script>
+    <%= live_title_tag(assigns[:page_title] || "FossRetro", suffix: " · Phoenix Framework") %>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")} />
+    <link rel="stylesheet" href="https://cdn.lineicons.com/2.0/LineIcons.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quicksand" />
+    <script
+      defer
+      phx-track-static
+      type="text/javascript"
+      src={Routes.static_path(@conn, "/assets/app.js")}
+    >
+    </script>
   </head>
-  <body>
-    <header>
-      <section class="container">
-        <a class="logo" href="/">
-          <img src={ FossRetroWeb.Endpoint.static_path("/images/logo.svg") } alt="logo">
+  <body class="phx-body flex flex-col h-full">
+    <header class="h-min">
+      <section class="flex items-center">
+        <a href="/" class="basis-1/6">
+          <img
+            class="h-24"
+            src={FossRetroWeb.Endpoint.static_path("/images/logo.svg")}
+            alt="logo"
+          />
         </a>
         <%= if assigns[:board] do %>
-          <div class="title"><%= @board.title %></div>
+          <div class="text-xl basis-2/3 text-center"><%= @board.title %></div>
         <% end %>
-        <nav role="navigation">
-        </nav>
+        <div class="basis=1/4"></div>
       </section>
     </header>
     <%= @inner_content %>

@@ -17,13 +17,13 @@ defmodule FossRetroWeb.Router do
   scope "/", FossRetroWeb do
     pipe_through :browser
 
-    get "/", BoardController, :index
     get "/start", BoardController, :start
     post "/start", BoardController, :start
     get "/join", BoardController, :join
     post "/join", BoardController, :join
     get "/board/:key", BoardController, :board_live
 
+    live "/", HomeLive
     live "/boards", ListLive
   end
 

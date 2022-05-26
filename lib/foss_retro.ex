@@ -2,7 +2,7 @@ defmodule FossRetro do
   @moduledoc """
   The main API for interacting with FossRetro's OTP business logic.
   """
-  use Boundary, deps: [], exports: []
+  use Boundary, deps: [], exports: [Core.Board]
 
   alias FossRetro.Boundary.{BoardManager, BoardSession}
   alias FossRetro.Core.Board

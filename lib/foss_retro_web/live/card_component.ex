@@ -38,7 +38,7 @@ defmodule FossRetroWeb.CardComponent do
 
   defp icon_status(board, current_user, card_id) do
     if has_voted(board, current_user, card_id) do
-      "active"
+      "text-purple-800"
     else
       ""
     end

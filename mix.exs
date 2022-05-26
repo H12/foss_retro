@@ -39,7 +39,7 @@ defmodule FossRetro.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.6.6"},
-      {:phoenix_live_view, "~> 0.17.7"},
+      {:phoenix_live_view, "~> 0.17.9"},
       {:floki, ">= 0.0.0", only: :test},
       {:phoenix_html, "~> 3.0"},
       {:phoenix_live_reload, "~> 1.3", only: :dev},
@@ -52,7 +52,8 @@ defmodule FossRetro.MixProject do
       {:esbuild, "~> 0.3", runtime: Mix.env() == :dev},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
-      {:boundary, "~> 0.8.0", runtime: false}
+      {:boundary, "~> 0.8.0", runtime: false},
+      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev}
     ]
   end
 
