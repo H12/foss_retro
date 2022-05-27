@@ -67,8 +67,8 @@ defmodule FossRetro.MixProject do
     [
       setup: ["deps.get", "cmd npm install --prefix assets"],
       "assets.deploy": [
-        "esbuild default --minify",
         "tailwind default --minify",
+        "esbuild default --minify",
         "phx.digest"
       ]
     ]
