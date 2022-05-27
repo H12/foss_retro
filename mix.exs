@@ -65,7 +65,7 @@ defmodule FossRetro.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get", "cmd npm install --prefix assets"],
+      setup: ["deps.get", "assets.build"],
       "assets.deploy": [
         "tailwind default --minify",
         "esbuild default --minify",
