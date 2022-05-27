@@ -45,8 +45,8 @@ defmodule FossRetroWeb.BoardLive do
   end
 
   def handle_event("add_card", card_attrs, socket) do
-    IO.inspect card_attrs
-    IO.inspect socket
+    IO.inspect(card_attrs)
+    IO.inspect(socket)
 
     %{"category" => category_id, "content" => content, "creator" => creator_id} = card_attrs
 

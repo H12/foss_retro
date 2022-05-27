@@ -4,10 +4,11 @@
 
 /* The styles below ensure the LiveView wrappers don't break flexbox layouts. */
 
-.phx-main > div, .phx-body > div {
-  flex-grow: 1
+.phx-app > div, .phx-body > div {
+  display: flex;
+  flex: 1
 }
 
-.phx-body > div {
-  display: flex;
+.phx-app > div {
+  overflow-y: hidden;
 }

@@ -11,7 +11,7 @@ defmodule FossRetroWeb.Shared do
 
   def hero(assigns) do
     ~H"""
-    <section class="relative px-6 pt-10 pb-8 bg-white shadow-xl ring-1
+    <section class="relative h-min px-6 pt-10 pb-8 bg-white shadow-xl ring-1
     ring-gray-900/5 sm:max-w-lg sm:mx-auto sm:rounded-lg sm:px-10">
       <h1 class="text-center text-2xl"><%= assigns.title %></h1>
       <h2 class="text-center text-lg pt-3"><i><%= assigns.subtitle %></i></h2>

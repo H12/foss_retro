@@ -1,6 +1,6 @@
-<section class="flex flex-row h-full outline-1">
+<section class="flex">
   <%= for { category_id, %{cards: card_ids, name: category_name} } <- @board.categories do %>
-    <div class="h-max m-1">
+    <div class="flex flex-col grow m-1">
       <div class="text-xl text-center"><%= category_name %></div>
       <form phx-submit="add_card">
         <input
@@ -12,19 +12,17 @@
         <input type="hidden" name="category" value={category_id} />
         <input type="hidden" name="creator" value={@current_user} />
       </form>
-      <div id={"category-" <> to_string(category_id)}>
-        <div>
-          <%= for card_id <- card_ids do %>
-            <.live_component
-              module={CardComponent}
-              id={card_id}
-              board={@board}
-              category_id={category_id}
-              card={@board.cards[card_id]}
-              current_user={@current_user}
-            />
-          <% end %>
-        </div>
+      <div id={"category-" <> to_string(category_id)} class="overflow-y-auto">
+        <%= for card_id <- card_ids do %>
+          <.live_component
+            module={CardComponent}
+            id={card_id}
+            board={@board}
+            category_id={category_id}
+            card={@board.cards[card_id]}
+            current_user={@current_user}
+          />
+        <% end %>
       </div>
     </div>
   <% end %>
