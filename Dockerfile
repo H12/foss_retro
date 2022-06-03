@@ -10,9 +10,9 @@
 #   - https://hub.docker.com/r/hexpm/elixir/tags - for the build image
 #   - https://hub.docker.com/_/debian?tab=tags&page=1&name=bullseye-20210902-slim - for the release image
 #   - https://pkgs.org/ - resource for finding needed packages
-#   - Ex: hexpm/elixir:1.13.3-erlang-24.2.1-debian-bullseye-20210902-slim
+#   - Ex: hexpm/elixir:1.13.0-erlang-25.0-debian-bullseye-20210902-slim
 #
-ARG BUILDER_IMAGE="hexpm/elixir:1.13.3-erlang-24.2.1-debian-bullseye-20210902-slim"
+ARG BUILDER_IMAGE="hexpm/elixir:1.13.0-erlang-25.0-debian-bullseye-20210902-slim"
 ARG RUNNER_IMAGE="debian:bullseye-20210902-slim"
 
 FROM ${BUILDER_IMAGE} as builder
@@ -44,6 +44,8 @@ RUN mix deps.compile
 
 COPY priv priv
 
+COPY lib lib
+
 # note: if your project uses a tool like https://purgecss.com/,
 # which customizes asset compilation based on what it finds in
 # your Elixir templates, you will need to move the asset compilation
@@ -53,14 +55,12 @@ COPY assets assets
 # compile assets
 RUN mix assets.deploy
 
-# Compile the release
-COPY lib lib
-
 RUN mix compile
 
 # Changes to config/runtime.exs don't require recompiling the code
 COPY config/runtime.exs config/
 
+# Compile the release
 COPY rel rel
 RUN mix release
 
@@ -86,8 +86,8 @@ COPY --from=builder --chown=nobody:root /app/_build/prod/rel/foss_retro ./
 
 USER nobody
 
-CMD ["/app/bin/server"]
+# Set the runtime ENV
+ENV ECTO_IPV6="true"
+ENV ERL_AFLAGS="-proto_dist inet6_tcp"
 
-# Appended by flyctl
-ENV ECTO_IPV6 true
-ENV ERL_AFLAGS "-proto_dist inet6_tcp"
+CMD /app/bin/server
