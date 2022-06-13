@@ -5,7 +5,7 @@ config :logger, :console,
   metadata: [:request_id]
 
 config :esbuild,
-  version: "0.14.0",
+  version: "0.14.41",
   default: [
     args:
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
