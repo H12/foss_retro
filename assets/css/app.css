@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 /* The styles below ensure the LiveView wrappers don't break flexbox layouts. */
-
 .phx-app > div, .phx-body > div {
   display: flex;
   flex: 1
 }
 
+/* The styles below ensure the overflow behavior on the board view works as-desired. */
 .phx-app > div {
   overflow-y: hidden;
 }
