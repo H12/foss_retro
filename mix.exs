@@ -38,8 +38,8 @@ defmodule FossRetro.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.6.6"},
-      {:phoenix_live_view, "~> 0.17.9"},
+      {:phoenix, "~> 1.6.10"},
+      {:phoenix_live_view, "~> 0.17.10"},
       {:floki, ">= 0.0.0", only: :test},
       {:phoenix_html, "~> 3.0"},
       {:phoenix_live_reload, "~> 1.3", only: :dev},
