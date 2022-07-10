@@ -9,7 +9,7 @@ defmodule FossRetroWeb.HomeLive do
 
   def mount(_params, _session, socket) do
     title = "Welcome to FossRetro!"
-    subtitle = "Easy retrospectives for agile development"
+    subtitle = "Enter the title of your new retro board below..."
 
     {:ok, assign(socket, title: title, subtitle: subtitle, board_name: "")}
   end

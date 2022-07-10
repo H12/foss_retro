@@ -29,9 +29,9 @@
           />
         </a>
         <%= if assigns[:board] do %>
-          <div class="text-xl basis-2/3 text-center"><%= @board.title %></div>
+          <div class="text-xl grow text-center"><%= @board.title %></div>
         <% end %>
-        <div class="basis=1/4"></div>
+        <div class="w-40"></div>
       </section>
     </header>
     <%= @inner_content %>
